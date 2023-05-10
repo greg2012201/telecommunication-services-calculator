@@ -14,6 +14,7 @@ export interface Product {
     2024: number;
     2025: number;
   };
+  currency: string;
 }
 
 export interface Package extends Product {
