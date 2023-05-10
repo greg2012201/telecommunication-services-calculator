@@ -4,6 +4,7 @@ export function isPackage(x: any): x is Package {
   return x.type === "PACKAGE";
 }
 export interface Product {
+  readonly id: string;
   name: string;
   description: string;
   productKey: ProductKey;
