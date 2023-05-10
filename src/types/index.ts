@@ -1,6 +1,6 @@
 type ProductKey = string;
 
-export function isPackage(x: any): x is Package {
+export function isPackage(x: Product | Package): x is Package {
   return x.type === "PACKAGE";
 }
 export interface Product {
