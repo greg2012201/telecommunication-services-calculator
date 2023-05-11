@@ -1,18 +1,18 @@
 import { useCallback, useEffect, useState } from "react";
 import useStateMachine, { actions, states } from "./useStateMachine";
 
-interface Result<T> {
-  data: T | null;
+interface Result<ExpectedFetchRes> {
+  data: ExpectedFetchRes | null;
   isFetching: boolean;
   hasError: boolean;
   fetchData(): void;
 }
 
-function useFetch<T>(
-  fetcher: () => Promise<T | any>,
+function useFetch<ExpectedFetchRes>(
+  fetcher: () => Promise<ExpectedFetchRes | any>,
   fetchOnInitialRender?: boolean
-): Result<T> {
-  const [data, setData] = useState<T | null>(null);
+): Result<ExpectedFetchRes> {
+  const [data, setData] = useState<ExpectedFetchRes | null>(null);
   const { updateState, compareState } = useStateMachine();
 
   const fetchData = useCallback(async () => {
