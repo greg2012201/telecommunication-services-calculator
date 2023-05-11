@@ -28,15 +28,14 @@ function useFetch<ExpectedFetchRes>({
     updateState(actions.initialize);
     try {
       const response = await fetcher();
-      setData(response);
       if (isUnaryFn(onSuccess)) {
         onSuccess(response);
       } else {
-        updateState(actions.success);
+        setData(response);
       }
+      updateState(actions.success);
     } catch (error) {
       updateState(actions.error);
-      console.error(error);
     }
   }, [fetcher, updateState, onSuccess]);
 
