@@ -1,10 +1,5 @@
 import { useCallback, useState } from "react";
 
-type State = string;
-type Action = string;
-
-type Transition = Record<Action, State>;
-
 export const actions = {
   initialize: "INITIALIZE",
   success: "FETCH_DATA_SUCCESS",
@@ -18,7 +13,7 @@ export const states = {
   hasError: "error",
 };
 
-const transitions: Record<State, Transition> = {
+const transitions = {
   [states.idle]: {
     [actions.initialize]: states.isLoading,
   },
@@ -35,21 +30,21 @@ const transitions: Record<State, Transition> = {
 };
 
 function useStateMachine() {
-  const [currentState, setCurrentState] = useState<State>(states.idle);
+  const [currentState, setCurrentState] = useState<string>(states.idle);
 
-  const transition = (currentState: State, action: Action): State => {
-    const nextState: State = transitions[currentState][action];
+  const transition = (currentState: string, action: string): string => {
+    const nextState: string = transitions[currentState][action];
     return nextState || currentState;
   };
 
   const updateState = useCallback(
-    (action: Action) =>
-      setCurrentState((currentState: State) =>
+    (action: string) =>
+      setCurrentState((currentState: string) =>
         transition(currentState, action)
       ),
     []
   );
-  const compareState = (state: State) => currentState === state;
+  const compareState = (state: string) => currentState === state;
   return { updateState, compareState, states };
 }
 
