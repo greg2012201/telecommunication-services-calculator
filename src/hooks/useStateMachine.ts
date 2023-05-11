@@ -1,29 +1,17 @@
 import { useCallback, useState } from "react";
 
-export interface Actions {
-  initialize: "INITIALIZE";
-  success: "FETCH_DATA_SUCCESS";
-  error: "FETCH_DATA_ERROR";
-}
-export interface States {
-  idle: "idle";
-  isLoading: "loading";
-  hasLoaded: "loaded";
-  hasError: "error";
-}
-
-export type State = string;
-export type Action = string;
+type State = string;
+type Action = string;
 
 type Transition = Record<Action, State>;
 
-const actions: Actions = {
+const actions = {
   initialize: "INITIALIZE",
   success: "FETCH_DATA_SUCCESS",
   error: "FETCH_DATA_ERROR",
 };
 
-const states: States = {
+const states = {
   idle: "idle",
   isLoading: "loading",
   hasLoaded: "loaded",
