@@ -1,21 +1,36 @@
 import { useCallback, useState } from "react";
 
-type Action = "INITIALIZE" | "FETCH_DATA_SUCCESS" | "FETCH_DATA_ERROR";
-type State = "idle" | "loading" | "loaded" | "error";
+export interface Actions {
+  initialize: "INITIALIZE";
+  success: "FETCH_DATA_SUCCESS";
+  error: "FETCH_DATA_ERROR";
+}
+export interface States {
+  idle: "idle";
+  isLoading: "loading";
+  hasLoaded: "loaded";
+  hasError: "error";
+}
 
-export const states = {
+export type State = string;
+export type Action = string;
+
+type Transition = Record<Action, State>;
+
+const actions: Actions = {
+  initialize: "INITIALIZE",
+  success: "FETCH_DATA_SUCCESS",
+  error: "FETCH_DATA_ERROR",
+};
+
+const states: States = {
   idle: "idle",
   isLoading: "loading",
   hasLoaded: "loaded",
   hasError: "error",
 };
 
-const actions = {
-  initialize: "INITIALIZE",
-  success: "FETCH_DATA_SUCCESS",
-  error: "FETCH_DATA_ERROR",
-};
-const transitions = {
+const transitions: Record<State, Transition> = {
   [states.idle]: {
     [actions.initialize]: states.isLoading,
   },
@@ -32,16 +47,18 @@ const transitions = {
 };
 
 function useStateMachine() {
-  const [currentState, setCurrentState] = useState(states.idle);
+  const [currentState, setCurrentState] = useState<State>(states.idle);
 
-  const transition = (currentState: string, action: Action) => {
-    const nextState = transitions[currentState][action];
+  const transition = (currentState: State, action: Action): State => {
+    const nextState: State = transitions[currentState][action];
     return nextState || currentState;
   };
 
   const updateState = useCallback(
     (action: Action) =>
-      setCurrentState((currentState) => transition(currentState, action)),
+      setCurrentState((currentState: State) =>
+        transition(currentState, action)
+      ),
     []
   );
   const compareState = (state: State) => currentState === state;
