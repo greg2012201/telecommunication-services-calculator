@@ -1,10 +1,10 @@
-import { IProduct, isString } from "../../types";
+import { TProduct, isString } from "../../types";
 import products from "../../mocks/products.json";
 
 const apiUrl: string | unknown = import.meta.env.VITE_REACT_APP_FETCH_URL;
 
 type FeatureFlag = "REMOTE_DATA_SOURCE" | "STATIC_DATA_SOURCE";
-type Response = Promise<IProduct | unknown>;
+type Response = Promise<TProduct | unknown>;
 interface FetcherFn {
   (): Response;
 }
