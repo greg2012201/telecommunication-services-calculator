@@ -11,13 +11,16 @@ interface Props {
 const ProductContainer: FC<Props> = ({ children }) => {
   const { dispatch } = useProduct();
   const fetcher = fetchManager(import.meta.env.VITE_REACT_APP_FEATURE_FLAG);
-  useFetch<TProduct[]>({
+  const { isFetching } = useFetch<TProduct[]>({
     fetcher,
     fetchOnInitialRender: true,
     onSuccess: (data) => {
       dispatch({ type: "SET_PRODUCTS", payload: data });
     },
   });
+  if (isFetching) {
+    return <p>Loading...</p>;
+  }
   return children;
 };
 
