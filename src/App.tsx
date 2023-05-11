@@ -1,4 +1,4 @@
-import { ProductProvider } from "./services/Product";
+import { ProductContainer, ProductProvider } from "./services/Product";
 
 function App() {
   return (
@@ -7,6 +7,9 @@ function App() {
         <h1 className="pt-8 text-2xl">Telco Services calculator</h1>
         <p>Find your best offer</p>
       </div>
+      <ProductContainer>
+        <p>hello from container</p>
+      </ProductContainer>
     </ProductProvider>
   );
 }
