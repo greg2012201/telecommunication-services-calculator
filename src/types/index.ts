@@ -7,6 +7,10 @@ export function isString(x: unknown): x is string {
 export function isPackage(x: IProduct | IPackage): x is IPackage {
   return x.kind === "PACKAGE";
 }
+
+export function isUnaryFn<T>(x: unknown): x is (arg: T) => void {
+  return typeof x === "function";
+}
 export interface IProduct {
   readonly id: string;
   name: string;
