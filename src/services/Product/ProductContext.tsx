@@ -16,9 +16,9 @@ interface State {
   products?: IProduct[];
 }
 type Action =
-  | { type: "ADD"; payload: number }
-  | { type: "REMOVE"; payload: number }
-  | { type: "RESET"; payload: number };
+  | { type: "INCREMENT_PRICE"; payload: number }
+  | { type: "DECREMENT_PRICE"; payload: number }
+  | { type: "RESET_PRICE"; payload: number };
 
 const initialState: State = {
   totalPrice: 0,
@@ -26,11 +26,11 @@ const initialState: State = {
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {
-    case "ADD":
+    case "INCREMENT_PRICE":
       return { totalPrice: state.totalPrice + action.payload };
-    case "REMOVE":
+    case "DECREMENT_PRICE":
       return { totalPrice: state.totalPrice - action.payload };
-    case "RESET":
+    case "RESET_PRICE":
       return { totalPrice: 0 };
     default:
       throw new Error("Unexpected action");
