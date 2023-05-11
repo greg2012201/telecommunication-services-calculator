@@ -4,7 +4,7 @@
     "name": "Internet",
     "description": "Szybki internet",
     "productKey": "internet",
-    "type": "ITEM",
+    "kind": "ITEM",
     "price": {
       "2023": 39,
       "2024": 49,
@@ -17,7 +17,7 @@
     "name": "Telewizja",
     "description": "Telewizja kablowa",
     "productKey": "tv",
-    "type": "ITEM",
+    "kind": "ITEM",
     "price": {
       "2023": 49,
       "2024": 49,
@@ -30,7 +30,7 @@
     "name": "Pakiet \"Internet + telewizja\"",
     "description": "Internet + telewizja w jednym pakiecie",
     "productKey": "internet_tv_package",
-    "type": "PACKAGE",
+    "kind": "PACKAGE",
     "price": {
       "2023": 79,
       "2024": 89,
@@ -44,7 +44,7 @@
     "name": "Pakiet \"Internet + Abonament telefoniczny\"",
     "description": "Internet + abonament telefoniczny w jednym pakiecie",
     "productKey": "internet_phone_package",
-    "type": "PACKAGE",
+    "kind": "PACKAGE",
     "price": {
       "2023": 64,
       "2024": 64,
@@ -58,7 +58,7 @@
     "name": "Abonament telefoniczny",
     "description": "Abonament telefoniczny",
     "productKey": "phone",
-    "type": "ITEM",
+    "kind": "ITEM",
     "price": {
       "2023": 29,
       "2024": 29,
@@ -71,7 +71,7 @@
     "name": "Dekoder 4K",
     "description": "Dekoder z obsługą 4K",
     "productKey": "4k_decoder",
-    "type": "ITEM",
+    "kind": "ITEM",
     "price": {
       "2023": 29,
       "2024": 29,
