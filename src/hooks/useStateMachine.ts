@@ -5,13 +5,13 @@ type Action = string;
 
 type Transition = Record<Action, State>;
 
-const actions = {
+export const actions = {
   initialize: "INITIALIZE",
   success: "FETCH_DATA_SUCCESS",
   error: "FETCH_DATA_ERROR",
 };
 
-const states = {
+export const states = {
   idle: "idle",
   isLoading: "loading",
   hasLoaded: "loaded",
