@@ -32,7 +32,7 @@ const initialState: State = {
 function reducer(state: State, action: Action): State {
   switch (action.type) {
     case "SET_PRODUCTS":
-      return { ...state, products: { ...state.products, ...action.payload } };
+      return { ...state, products: action.payload };
     case "SET_SUMMED_PRODUCTS_IDS":
       return {
         ...state,
