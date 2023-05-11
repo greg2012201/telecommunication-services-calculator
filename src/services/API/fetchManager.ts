@@ -3,14 +3,14 @@ import products from "../../mocks/products.json";
 
 const apiUrl: string | unknown = process.env.REACT_APP_FETCH_URL;
 
-type FeatureFlag = "REMOTE_SOURCE" | "STATIC_SOURCE";
+type FeatureFlag = "REMOTE_DATA_SOURCE" | "STATIC_DATA_SOURCE";
 type Response = Promise<IProduct | unknown>;
 interface FetcherFn {
   (): Response;
 }
 
 const fetchers: Record<FeatureFlag, FetcherFn> = {
-  REMOTE_SOURCE: async () => {
+  REMOTE_DATA_SOURCE: async () => {
     try {
       if (!isString(apiUrl)) {
         throw new TypeError("API URL must be a string");
@@ -25,7 +25,7 @@ const fetchers: Record<FeatureFlag, FetcherFn> = {
       console.error(error);
     }
   },
-  STATIC_SOURCE: () => {
+  STATIC_DATA_SOURCE: () => {
     return new Promise((resolve) =>
       setTimeout(() => resolve(new Response(JSON.stringify(products))), 1000)
     );
