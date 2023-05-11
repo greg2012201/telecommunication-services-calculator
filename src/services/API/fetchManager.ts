@@ -1,7 +1,7 @@
 import { IProduct, isString } from "../../types";
 import products from "../../mocks/products.json";
 
-const apiUrl: string | unknown = process.env.REACT_APP_FETCH_URL;
+const apiUrl: string | unknown = import.meta.env.VITE_REACT_APP_FETCH_URL;
 
 type FeatureFlag = "REMOTE_DATA_SOURCE" | "STATIC_DATA_SOURCE";
 type Response = Promise<IProduct | unknown>;
@@ -25,10 +25,10 @@ const fetchers: Record<FeatureFlag, FetcherFn> = {
       console.error(error);
     }
   },
-  STATIC_DATA_SOURCE: () => {
-    return new Promise((resolve) =>
-      setTimeout(() => resolve(new Response(JSON.stringify(products))), 1000)
-    );
+  STATIC_DATA_SOURCE: async () => {
+    return new Promise((resolve) => {
+      return setTimeout(() => resolve(products), 1000);
+    });
   },
 };
 
