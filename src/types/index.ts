@@ -4,14 +4,14 @@ export function isString(x: unknown): x is string {
   return typeof x === "string";
 }
 
-export function isPackage(x: IProduct | IPackage): x is IPackage {
+export function isPackage(x: IItem | IPackage): x is IPackage {
   return x.kind === "PACKAGE";
 }
 
 export function isUnaryFn<T>(x: unknown): x is (arg: T) => void {
   return typeof x === "function";
 }
-export interface IProduct {
+export interface IItem {
   readonly id: string;
   name: string;
   description: string;
@@ -25,6 +25,8 @@ export interface IProduct {
   currency: string;
 }
 
-export interface IPackage extends IProduct {
+export interface IPackage extends IItem {
   includedProducts: TProductKey[];
 }
+
+export type TProduct = IItem | IPackage;
