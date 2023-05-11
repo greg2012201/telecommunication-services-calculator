@@ -5,7 +5,7 @@ import React, {
   FC,
   useContext,
 } from "react";
-import { IProduct } from "../../types";
+import { TProduct } from "../../types";
 
 interface Props {
   children: ReactNode;
@@ -13,11 +13,12 @@ interface Props {
 
 interface State {
   totalPrice: number;
-  products?: IProduct[];
+  products?: TProduct[];
 }
 type Action =
-  | { type: "INCREMENT_PRICE"; payload: number }
-  | { type: "DECREMENT_PRICE"; payload: number }
+  | { type: "SET_PRODUCTS"; payload: TProduct[] }
+  | { type: "INCREMENT_TOTAL_PRICE"; payload: number }
+  | { type: "DECREMENT_TOTAL_PRICE"; payload: number }
   | { type: "RESET_PRICE"; payload: number };
 
 const initialState: State = {
@@ -26,12 +27,14 @@ const initialState: State = {
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {
-    case "INCREMENT_PRICE":
-      return { totalPrice: state.totalPrice + action.payload };
-    case "DECREMENT_PRICE":
-      return { totalPrice: state.totalPrice - action.payload };
+    case "SET_PRODUCTS":
+      return { ...state, products: { ...state.products, ...action.payload } };
+    case "INCREMENT_TOTAL_PRICE":
+      return { ...state, totalPrice: state.totalPrice + action.payload };
+    case "DECREMENT_TOTAL_PRICE":
+      return { ...state, totalPrice: state.totalPrice - action.payload };
     case "RESET_PRICE":
-      return { totalPrice: 0 };
+      return { ...state, totalPrice: 0 };
     default:
       throw new Error("Unexpected action");
   }
