@@ -13,22 +13,31 @@ interface Props {
 
 interface State {
   totalPrice: number;
-  products?: TProduct[];
+  products: TProduct[];
+  summedProductsIds: TProduct["id"][];
 }
 type Action =
   | { type: "SET_PRODUCTS"; payload: TProduct[] }
+  | { type: "SET_SUMMED_PRODUCTS_IDS"; payload: TProduct["id"] }
   | { type: "INCREMENT_TOTAL_PRICE"; payload: number }
   | { type: "DECREMENT_TOTAL_PRICE"; payload: number }
   | { type: "RESET_PRICE"; payload: number };
 
 const initialState: State = {
   totalPrice: 0,
+  products: [],
+  summedProductsIds: [],
 };
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {
     case "SET_PRODUCTS":
       return { ...state, products: { ...state.products, ...action.payload } };
+    case "SET_SUMMED_PRODUCTS_IDS":
+      return {
+        ...state,
+        summedProductsIds: [...state.summedProductsIds, action.payload],
+      };
     case "INCREMENT_TOTAL_PRICE":
       return { ...state, totalPrice: state.totalPrice + action.payload };
     case "DECREMENT_TOTAL_PRICE":
