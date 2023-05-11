@@ -5,6 +5,7 @@ import React, {
   FC,
   useContext,
 } from "react";
+import { IProduct } from "../../types";
 
 interface Props {
   children: ReactNode;
@@ -12,6 +13,7 @@ interface Props {
 
 interface State {
   totalPrice: number;
+  products?: IProduct[];
 }
 type Action =
   | { type: "ADD"; payload: number }
