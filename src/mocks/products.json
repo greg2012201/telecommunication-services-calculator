@@ -6,9 +6,9 @@
     "productKey": "internet",
     "kind": "ITEM",
     "price": {
-      "2023": 39,
+      "2025": 59,
       "2024": 49,
-      "2025": 59
+      "2023": 39
     },
     "currency": "PLN"
   },
@@ -19,9 +19,9 @@
     "productKey": "tv",
     "kind": "ITEM",
     "price": {
-      "2023": 49,
+      "2025": 59,
       "2024": 49,
-      "2025": 59
+      "2023": 49
     },
     "currency": "PLN"
   },
@@ -32,9 +32,9 @@
     "productKey": "internet_tv_package",
     "kind": "PACKAGE",
     "price": {
-      "2023": 79,
+      "2025": 99,
       "2024": 89,
-      "2025": 99
+      "2023": 79
     },
     "includedProducts": ["internet", "tv", "decoder"],
     "currency": "PLN"
@@ -46,9 +46,9 @@
     "productKey": "internet_phone_package",
     "kind": "PACKAGE",
     "price": {
-      "2023": 64,
+      "2025": 64,
       "2024": 64,
-      "2025": 64
+      "2023": 64
     },
     "includedProducts": ["internet", "phone"],
     "currency": "PLN"
@@ -60,9 +60,9 @@
     "productKey": "phone",
     "kind": "ITEM",
     "price": {
-      "2023": 29,
+      "2025": 29,
       "2024": 29,
-      "2025": 29
+      "2023": 29
     },
     "currency": "PLN"
   },
@@ -70,12 +70,12 @@
     "id": "beed5626-23fa-4c04-9cc3-e327b1d8c162",
     "name": "Dekoder 4K",
     "description": "Dekoder z obsługą 4K",
-    "productKey": "4k_decoder",
+    "productKey": "decoder",
     "kind": "ITEM",
     "price": {
-      "2023": 29,
+      "2025": 29,
       "2024": 29,
-      "2025": 29
+      "2023": 29
     },
     "currency": "PLN"
   }
