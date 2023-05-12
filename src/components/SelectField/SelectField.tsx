@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styles from "./SelectField.module.css";
 
 type Value = string | number;
@@ -13,12 +12,11 @@ type Props = {
   label: string;
   name: string;
   id?: string;
-  initialValue?: Value;
+  selectedOptionLabel?: Option["label"];
   handleChange(option: string): void;
 };
-
-function isInitialValue(x: unknown): x is Value {
-  return typeof x === "string" || typeof x === "number";
+function checkHasSelectedOption(x: unknown): x is string {
+  return typeof x === "string";
 }
 
 function SelectField({
@@ -27,12 +25,10 @@ function SelectField({
   name,
   id,
   handleChange,
-  initialValue,
+  selectedOptionLabel,
 }: Props): JSX.Element {
-  const hasInitialValue = isInitialValue(initialValue);
-  const [value, setValue] = useState<Value>(
-    hasInitialValue ? initialValue : options[0].value
-  );
+  const hasSelectedOption = checkHasSelectedOption(selectedOptionLabel);
+
   return (
     <div className={styles.wrapper}>
       <label className={styles.label} htmlFor={name}>
@@ -43,16 +39,18 @@ function SelectField({
         name={name}
         onChange={(e) => {
           const targetValue = e.target.value;
-          setValue(targetValue);
           return handleChange(targetValue);
         }}
-        value={value}
       >
         {options.map((option: Option) => {
+          const isSelected =
+            hasSelectedOption && option.label === selectedOptionLabel;
+
           return (
             <option
               key={id ? `${id}-${option.label}` : option.label}
               value={option.value}
+              selected={isSelected}
             >
               {option.label}
             </option>
