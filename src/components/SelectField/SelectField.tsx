@@ -12,12 +12,9 @@ type Props = {
   label: string;
   name: string;
   id?: string;
-  selectedOptionLabel?: Option["label"];
+  defaultOptionLabel?: Option["label"];
   handleChange(option: string): void;
 };
-function checkHasSelectedOption(x: unknown): x is string {
-  return typeof x === "string";
-}
 
 function SelectField({
   options,
@@ -25,10 +22,8 @@ function SelectField({
   name,
   id,
   handleChange,
-  selectedOptionLabel,
+  defaultOptionLabel,
 }: Props): JSX.Element {
-  const hasSelectedOption = checkHasSelectedOption(selectedOptionLabel);
-
   return (
     <div className={styles.wrapper}>
       <label className={styles.label} htmlFor={name}>
@@ -43,14 +38,11 @@ function SelectField({
         }}
       >
         {options.map((option: Option) => {
-          const isSelected =
-            hasSelectedOption && option.label === selectedOptionLabel;
-
           return (
             <option
               key={id ? `${id}-${option.label}` : option.label}
               value={option.value}
-              selected={isSelected}
+              defaultValue={defaultOptionLabel}
             >
               {option.label}
             </option>
