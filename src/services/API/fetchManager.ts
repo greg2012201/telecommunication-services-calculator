@@ -27,7 +27,7 @@ const fetchers: Record<FeatureFlag, FetcherFn> = {
   },
   STATIC_DATA_SOURCE: async () => {
     return new Promise((resolve) => {
-      return setTimeout(() => resolve(products), 1000);
+      return setTimeout(() => resolve(products), 500);
     });
   },
 };
