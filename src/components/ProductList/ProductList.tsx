@@ -45,7 +45,7 @@ function ListItem({
           handleChange={(value) => {
             setSelectedPrice(value);
           }}
-          selectedOptionLabel={initialOption.label}
+          defaultOptionLabel={initialOption.label}
         />
         <button
           onClick={() => {
