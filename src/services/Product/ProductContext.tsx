@@ -18,6 +18,7 @@ interface State {
 }
 type Action =
   | { type: "SET_PRODUCTS"; payload: TProduct[] }
+  | { type: "ADD_PRODUCT_TO_SUMMARY"; payload: { id: string; price: number } }
   | { type: "SET_SUMMED_PRODUCTS_IDS"; payload: TProduct["id"] }
   | { type: "INCREMENT_TOTAL_PRICE"; payload: number }
   | { type: "DECREMENT_TOTAL_PRICE"; payload: number }
@@ -33,6 +34,12 @@ function reducer(state: State, action: Action): State {
   switch (action.type) {
     case "SET_PRODUCTS":
       return { ...state, products: action.payload };
+    case "ADD_PRODUCT_TO_SUMMARY":
+      return {
+        ...state,
+        summedProductsIds: [...state.summedProductsIds, action.payload.id],
+        totalPrice: state.totalPrice + action.payload.price,
+      };
     case "SET_SUMMED_PRODUCTS_IDS":
       return {
         ...state,
