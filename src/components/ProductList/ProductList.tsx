@@ -67,7 +67,6 @@ function ListItem({
 function ProductList() {
   const { state, dispatch } = useProduct();
   const { products } = state;
-  console.log({ state });
   const { items, packages } = productDataAdapter(products);
   const handleAddItem = ({ id, price }: { id: string; price: number }) => {
     dispatch({ type: "ADD_PRODUCT_TO_SUMMARY", payload: { id, price } });
