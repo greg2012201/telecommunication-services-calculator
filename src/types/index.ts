@@ -4,8 +4,12 @@ export function isString(x: unknown): x is string {
   return typeof x === "string";
 }
 
-export function isPackage(x: IItem | IPackage): x is IPackage {
+export function isPackage(x: IItem | IPackage | TProduct): x is IPackage {
   return x.kind === "PACKAGE";
+}
+
+export function isSummaryItem(x: any): x is TSummaryItem {
+  return x?.selectedYear && x?.includedProducts;
 }
 
 export function isUnaryFn<T>(x: unknown): x is (arg: T) => void {
@@ -30,3 +34,9 @@ export interface IPackage extends IItem {
 }
 
 export type TProduct = IItem | IPackage;
+
+export type TSummaryItem = Pick<IItem, "id" | "name" | "productKey"> & {
+  price: number;
+  selectedYear: number | string;
+  includedProducts: TProductKey[];
+};
