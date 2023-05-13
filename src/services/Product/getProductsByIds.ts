@@ -1,5 +1,5 @@
 import { findProductById } from ".";
-import type { TProduct, TSummaryItem } from "../../types";
+import type { TProduct } from "../../types";
 
 function getProductsByIds(
   summedProductsIds: string[],
