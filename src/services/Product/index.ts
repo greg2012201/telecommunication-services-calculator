@@ -4,6 +4,7 @@ import productDataAdapter from "./productDataAdapter";
 import priceAdapter from "./priceAdapter";
 import findProductById from "./findProductById";
 import getProductsByIds from "./getProductsByIds";
+import actionManager from "./actionManager";
 
 export {
   ProductProvider,
@@ -13,4 +14,5 @@ export {
   priceAdapter,
   findProductById,
   getProductsByIds,
+  actionManager,
 };
