@@ -13,7 +13,7 @@ type Props = {
   name: string;
   id?: string;
   defaultOptionLabel?: Option["label"];
-  handleChange(option: string): void;
+  handleChange(option: Option): void;
 };
 
 function SelectField({
@@ -34,14 +34,15 @@ function SelectField({
         name={name}
         onChange={(e) => {
           const targetValue = e.target.value;
-          return handleChange(targetValue);
+          const [value, label] = targetValue.split(",");
+          return handleChange({ value, label });
         }}
       >
         {options.map((option: Option) => {
           return (
             <option
               key={id ? `${id}-${option.label}` : option.label}
-              value={option.value}
+              value={[option.value.toString(), option.label]}
               defaultValue={defaultOptionLabel}
             >
               {option.label}
