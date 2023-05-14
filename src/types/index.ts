@@ -38,5 +38,5 @@ export type TProduct = IItem | IPackage;
 export type TSummaryItem = Pick<IItem, "id" | "name" | "productKey"> & {
   price: number;
   selectedYear: number | string;
-  includedProducts: TProductKey[];
+  includedProducts?: TProductKey[];
 };
