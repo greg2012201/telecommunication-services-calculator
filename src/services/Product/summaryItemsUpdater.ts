@@ -41,7 +41,7 @@ function getPackage({
   return {
     ...foundPackageItem,
     selectedYear: itemToAdd.selectedYear,
-    price: itemToAdd.price,
+    price: foundPackageItem.price[itemToAdd.selectedYear],
   };
 }
 
