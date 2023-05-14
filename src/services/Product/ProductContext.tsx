@@ -5,51 +5,42 @@ import React, {
   FC,
   useContext,
 } from "react";
-import { TProduct } from "../../types";
+import { TProduct, TSummaryItem } from "../../types";
+import summaryItemsUpdater from "./summaryItemsUpdater";
 
 interface Props {
   children: ReactNode;
 }
 
-interface State {
+export interface State {
   totalPrice: number;
   products: TProduct[];
-  summedProductsIds: TProduct["id"][];
+  summaryItems: TSummaryItem[];
 }
-type Action =
+export type Action =
   | { type: "SET_PRODUCTS"; payload: TProduct[] }
-  | { type: "ADD_PRODUCT_TO_SUMMARY"; payload: { id: string; price: number } }
-  | { type: "SET_SUMMED_PRODUCTS_IDS"; payload: TProduct["id"] }
-  | { type: "INCREMENT_TOTAL_PRICE"; payload: number }
-  | { type: "DECREMENT_TOTAL_PRICE"; payload: number }
-  | { type: "RESET_PRICE"; payload: number };
+  | { type: "UPDATE_SUMMARY"; payload: TSummaryItem }
+  | { type: "RESET_SUMMARY"; payload: number };
 
 const initialState: State = {
   totalPrice: 0,
   products: [],
-  summedProductsIds: [],
+  summaryItems: [],
 };
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {
     case "SET_PRODUCTS":
       return { ...state, products: action.payload };
-    case "ADD_PRODUCT_TO_SUMMARY":
-      return {
-        ...state,
-        summedProductsIds: [...state.summedProductsIds, action.payload.id],
-        totalPrice: state.totalPrice + action.payload.price,
-      };
-    case "SET_SUMMED_PRODUCTS_IDS":
-      return {
-        ...state,
-        summedProductsIds: [...state.summedProductsIds, action.payload],
-      };
-    case "INCREMENT_TOTAL_PRICE":
-      return { ...state, totalPrice: state.totalPrice + action.payload };
-    case "DECREMENT_TOTAL_PRICE":
-      return { ...state, totalPrice: state.totalPrice - action.payload };
-    case "RESET_PRICE":
+    case "UPDATE_SUMMARY": {
+      const newSummaryItems = summaryItemsUpdater({
+        itemToAdd: action.payload,
+        products: state.products,
+        summaryItems: state.summaryItems,
+      });
+      return { ...state, summaryItems: newSummaryItems };
+    }
+    case "RESET_SUMMARY":
       return { ...state, totalPrice: 0 };
     default:
       throw new Error("Unexpected action");
