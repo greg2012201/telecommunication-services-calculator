@@ -20,7 +20,7 @@ export interface State {
 export type Action =
   | { type: "SET_PRODUCTS"; payload: TProduct[] }
   | { type: "UPDATE_SUMMARY"; payload: TSummaryItem }
-  | { type: "RESET_SUMMARY"; payload: number };
+  | { type: "RESET_SUMMARY" };
 
 const initialState: State = {
   totalPrice: 0,
@@ -41,7 +41,7 @@ function reducer(state: State, action: Action): State {
       return { ...state, summaryItems: newSummaryItems };
     }
     case "RESET_SUMMARY":
-      return { ...state, totalPrice: 0 };
+      return { ...state, totalPrice: 0, summaryItems: [] };
     default:
       throw new Error("Unexpected action");
   }
