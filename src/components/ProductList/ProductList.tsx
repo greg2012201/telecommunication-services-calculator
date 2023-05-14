@@ -96,24 +96,10 @@ function ProductList() {
   const { state, dispatch } = useProduct();
   const { products } = state;
   const { items, packages } = productDataAdapter(products);
-  const handleAddItem = ({
-    id,
-    price,
-    selectedYear,
-    productKey,
-    includedProducts,
-    name,
-  }: ItemToAddProps) => {
+  const handleAddItem = (itemProps: ItemToAddProps) => {
     dispatch({
       type: "UPDATE_SUMMARY",
-      payload: {
-        id,
-        name,
-        price,
-        selectedYear,
-        productKey,
-        includedProducts,
-      },
+      payload: itemProps,
     });
   };
 
