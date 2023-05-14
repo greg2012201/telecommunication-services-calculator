@@ -21,11 +21,7 @@ export interface IItem {
   description: string;
   productKey: TProductKey;
   kind: "ITEM" | "PACKAGE";
-  price: {
-    2023: number;
-    2024: number;
-    2025: number;
-  };
+  price: Record<"2023" | "2024" | "2025", number>;
   currency: string;
 }
 
