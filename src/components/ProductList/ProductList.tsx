@@ -8,10 +8,28 @@ import { TProduct, isString } from "../../types";
 import SelectField from "../SelectField";
 import styles from "./ProductList.module.css";
 
+type ItemToAddProps = {
+  id: string;
+  name: string;
+  price: number;
+  selectedYear: string;
+  productKey: string;
+  includedProducts?: string[];
+};
+
 type ListItemProps = Pick<
   TProduct,
-  "id" | "name" | "price" | "description" | "currency"
-> & { handleAddItem({ id, price }: { id: string; price: number }): void };
+  "id" | "name" | "price" | "description" | "currency" | "productKey"
+> & {
+  handleAddItem({
+    id,
+    price,
+    selectedYear,
+    productKey,
+    includedProducts,
+    name,
+  }: ItemToAddProps): void;
+} & { includedProducts?: string[] };
 
 function ListItem({
   id,
@@ -20,10 +38,12 @@ function ListItem({
   description,
   currency,
   handleAddItem,
+  productKey,
+  includedProducts,
 }: ListItemProps) {
   const options = priceAdapter(price);
   const initialOption = options[0];
-  const [selectedPrice, setSelectedPrice] = useState(initialOption.value);
+  const [selectedOption, setSelectedOption] = useState(initialOption);
 
   return (
     <li className={styles.list_item}>
@@ -34,7 +54,7 @@ function ListItem({
       <div className={styles.list_item_price_wrapper}>
         <p className={styles.list_item_price_indicator}>
           <span>Price:</span>
-          {selectedPrice}
+          {selectedOption.value}
           {currency}
         </p>
         <SelectField
@@ -42,17 +62,25 @@ function ListItem({
           name={name}
           label="Choose an option"
           options={options}
-          handleChange={(value) => {
-            setSelectedPrice(value);
+          handleChange={(selectedOption) => {
+            setSelectedOption(selectedOption);
           }}
           defaultOptionLabel={initialOption.label}
         />
         <button
           onClick={() => {
-            if (!isString(selectedPrice)) {
-              return;
-            }
-            handleAddItem({ id, price: parseInt(selectedPrice, 10) });
+            const selectedPriceAsNumber = isString(selectedOption.value)
+              ? parseInt(selectedOption.value, 10)
+              : selectedOption.value;
+
+            handleAddItem({
+              id,
+              price: selectedPriceAsNumber,
+              selectedYear: selectedOption.label,
+              productKey,
+              includedProducts,
+              name,
+            });
           }}
           className={styles.list_item_button}
           type="button"
@@ -68,8 +96,25 @@ function ProductList() {
   const { state, dispatch } = useProduct();
   const { products } = state;
   const { items, packages } = productDataAdapter(products);
-  const handleAddItem = ({ id, price }: { id: string; price: number }) => {
-    dispatch({ type: "ADD_PRODUCT_TO_SUMMARY", payload: { id, price } });
+  const handleAddItem = ({
+    id,
+    price,
+    selectedYear,
+    productKey,
+    includedProducts,
+    name,
+  }: ItemToAddProps) => {
+    dispatch({
+      type: "UPDATE_SUMMARY",
+      payload: {
+        id,
+        name,
+        price,
+        selectedYear,
+        productKey,
+        includedProducts,
+      },
+    });
   };
 
   return (
