@@ -101,5 +101,23 @@ describe("summaryItemsUpdater", () => (
       summaryItems: [packageItem],
     });
     expect(result).toEqual([packageItem, itemToAdd]);
+  }),
+  it("should edit item", () => {
+    const itemToEdit = hydrateMockProps({
+      id: "5b41fbf2-9894-48f4-8b52-cc1818c3fb67",
+      selectedYear: "2025",
+      price: 59,
+    });
+    const itemInSummary = hydrateMockProps({
+      id: "5b41fbf2-9894-48f4-8b52-cc1818c3fb67",
+      selectedYear: "2024",
+      price: 49,
+    });
+    const result = summaryItemsUpdater({
+      itemToAdd: itemToEdit,
+      products,
+      summaryItems: [itemInSummary],
+    });
+    expect(result).toEqual([itemToEdit]);
   })
 ));
