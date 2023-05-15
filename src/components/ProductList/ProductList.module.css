@@ -9,71 +9,9 @@
 .list {
   padding: 10px 0;
 }
-
-.list_item {
-  display: flex;
-  align-items: center;
-  padding: 6px;
-  display: flex;
-  list-style: none;
-  border-bottom: 1px solid rgb(212 212 212);
-  border-radius: 4px;
-}
-
-.list_item_description_wrapper {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.list_item_description {
-  padding-left: 12px;
-  font-size: 12px;
-  font-style: italic;
-  color: #6b7280;
-}
-.list_item_price_wrapper {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.list_item_price_indicator {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  font-size: 14;
-}
-.list_item_price_indicator > span {
-  font-size: 12px;
-  font-style: italic;
-  color: #6b7280;
-}
 .divider_description {
   padding-top: 6px;
   color: #6b7280;
   font-style: italic;
   font-size: 18px;
-}
-
-.list_item_button {
-  padding: 8px;
-  border-radius: 4px;
-  border: none;
-  min-width: 40px;
-  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
-    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
-  background-color: rgb(226 232 240);
-  color: rgb(15 23 42);
-  cursor: pointer;
-}
-.list_item_button:hover {
-  box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
-    rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
-  opacity: 0.8;
-}
-.list_item_button:disabled {
-  opacity: 0.6;
-  cursor: auto;
-  box-shadow: unset;
 }
