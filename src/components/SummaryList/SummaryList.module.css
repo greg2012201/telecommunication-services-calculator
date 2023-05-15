@@ -16,18 +16,6 @@
   gap: 6px;
   font-style: italic;
 }
-.list_item_prop_wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  font-size: 14px;
-}
-.list_item_prop_wrapper--title {
-  flex: 1;
-}
-.list_item_prop_label {
-  font-size: 12px;
-}
 .list_item_delete_button {
   display: flex;
   align-items: center;

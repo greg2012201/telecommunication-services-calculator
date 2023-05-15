@@ -1,0 +1,12 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-size: 14px;
+}
+.wrapper--title {
+  flex: 1;
+}
+.label {
+  font-size: 12px;
+}

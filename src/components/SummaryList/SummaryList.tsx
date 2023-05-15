@@ -1,5 +1,6 @@
 import { useProduct } from "../../services/Product";
 import { calculateTotalPrice } from "../../services/Product/calculatePrice";
+import PropWrapper from "./PropWrapper";
 import styles from "./SummaryList.module.css";
 import { getPackages, handleCalculatePriceOfPackageItem } from "./utils";
 
@@ -18,17 +19,9 @@ function SummaryList() {
           return (
             <li className={styles.list_item_wrapper} key={`${id}-${name}`}>
               <span>✔</span>
-              <div className={styles["list_item_prop_wrapper--title"]}>
-                <p>{name}</p>
-              </div>
-              <div className={styles.list_item_prop_wrapper}>
-                <p className={styles.list_item_prop_label}>Price:</p>
-                <p>{price}PLN</p>
-              </div>
-              <div className={styles.list_item_prop_wrapper}>
-                <p className={styles.list_item_prop_label}>Year:</p>
-                <p>{selectedYear}</p>
-              </div>
+              <PropWrapper value={name} hasTitle />
+              <PropWrapper value={`${price}PLN`} label="Price:" />
+              <PropWrapper value={selectedYear.toString()} label="Year:" />
               <button
                 onClick={() => dispatch({ type: "REMOVE_ITEM", payload: id })}
                 className={styles.list_item_delete_button}
