@@ -1,4 +1,4 @@
-import { TProduct, TSummaryItem, isSummaryItem } from "../../types";
+import { IPackage, TProduct, TSummaryItem, isSummaryItem } from "../../types";
 import productDataAdapter from "./productDataAdapter";
 
 type UpdaterProps = {
@@ -53,6 +53,20 @@ function getPackage({
 
 function isPackage(itemToAdd: TSummaryItem): boolean {
   return !!itemToAdd?.includedProducts?.length;
+}
+
+function arePackagesRelated(
+  itemToAdd: TSummaryItem,
+  itemFromList: TSummaryItem
+) {
+  return (
+    itemFromList.includedProducts &&
+    itemFromList.includedProducts.some(
+      (productKey) =>
+        itemToAdd.includedProducts &&
+        itemToAdd.includedProducts.includes(productKey)
+    )
+  );
 }
 
 function isPartOfThePackage({
@@ -130,9 +144,11 @@ function summaryItemsUpdater({
     ];
   }
   if (addPackageItem) {
+    console.log("add package");
     return [
       ...summaryItems.filter((item) => {
         return (
+          !arePackagesRelated(itemToAdd, item) &&
           itemToAdd.id !== item.id &&
           itemToAdd?.includedProducts &&
           !itemToAdd?.includedProducts.includes(item.productKey)
