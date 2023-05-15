@@ -1,4 +1,4 @@
-import { IPackage, TProduct, TSummaryItem, isSummaryItem } from "../../types";
+import { TProduct, TSummaryItem, isSummaryItem } from "../../types";
 import productDataAdapter from "./productDataAdapter";
 
 type UpdaterProps = {
