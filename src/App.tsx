@@ -1,5 +1,5 @@
 import ProductList from "./components/ProductList";
-import { ProductContainer, ProductProvider } from "./services/Product";
+import { ProductContainer } from "./services/Product";
 import styles from "./App.module.css";
 import SummaryList from "./components/SummaryList";
 
