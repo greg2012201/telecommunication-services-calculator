@@ -92,3 +92,12 @@ export function getSummaryItemMock({
 
   return { ...foundProduct, selectedYear, price } as TSummaryItem;
 }
+
+export function composeSummaryItemsMock(items: SummaryItemGetterProps[]) {
+  const mocks: TSummaryItem[] = [];
+  items.forEach((itemProps) => {
+    const foundItem = getSummaryItemMock(itemProps);
+    mocks.push(foundItem);
+  });
+  return mocks;
+}
