@@ -1,6 +1,6 @@
 import { fetchManager } from "../API";
 import useFetch from "../../hooks/useFetch";
-import { TProduct } from "../../types";
+import type { TProduct } from "../../types";
 import { ProductProvider } from ".";
 import { ReactNode } from "react";
 

@@ -5,7 +5,7 @@ import React, {
   FC,
   useContext,
 } from "react";
-import { TProduct, TSummaryItem } from "../../types";
+import type { TProduct, TSummaryItem } from "../../types";
 import summaryItemsUpdater from "./summaryItemsUpdater";
 
 interface Props {

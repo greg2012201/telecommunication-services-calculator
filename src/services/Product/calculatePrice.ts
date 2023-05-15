@@ -1,4 +1,4 @@
-import { TProduct, TSummaryItem } from "../../types";
+import type { TProduct, TSummaryItem } from "../../types";
 
 export function sumPricesOfPackageItems(
   includedProducts: string[],
