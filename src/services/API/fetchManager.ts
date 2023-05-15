@@ -1,5 +1,6 @@
-import { TProduct, isString } from "../../types";
+import type { TProduct } from "../../types";
 import products from "../../mocks/products.json";
+import { isString } from "../../types/utils";
 
 const apiUrl: string | unknown = import.meta.env.VITE_REACT_APP_FETCH_URL;
 

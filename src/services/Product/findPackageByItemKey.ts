@@ -1,4 +1,5 @@
-import { IPackage, TProduct, isPackage } from "../../types";
+import type { IPackage, TProduct } from "../../types";
+import { isPackage } from "../../types/utils";
 
 function findPackageByItemKey(
   products: TProduct[],

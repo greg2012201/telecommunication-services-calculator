@@ -4,9 +4,10 @@ import {
   productDataAdapter,
   priceAdapter,
 } from "../../services/Product";
-import { TProduct, TSummaryItem, isString } from "../../types";
+import type { TProduct, TSummaryItem } from "../../types";
 import SelectField from "../SelectField";
 import styles from "./ProductList.module.css";
+import { isString } from "../../types/utils";
 
 type ItemToAddProps = {
   id: string;

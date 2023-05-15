@@ -1,4 +1,5 @@
-import { IItem, IPackage, TProduct, isPackage } from "../../types";
+import type { IItem, IPackage, TProduct } from "../../types";
+import { isPackage } from "../../types/utils";
 
 function productDataAdapter(products: TProduct[]): {
   items: IItem[];

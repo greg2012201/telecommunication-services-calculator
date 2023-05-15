@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import useStateMachine, { actions, states } from "./useStateMachine";
-import { isUnaryFn } from "../types";
+import { isUnaryFn } from "../types/utils";
 
 // type data  ?
 export interface Result<ExpectedFetchRes> {

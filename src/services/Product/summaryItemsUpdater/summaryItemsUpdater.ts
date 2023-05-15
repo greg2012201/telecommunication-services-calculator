@@ -1,4 +1,5 @@
-import { TSummaryItem, isSummaryItem } from "../../../types";
+import type { TSummaryItem } from "../../../types";
+import { isSummaryItem } from "../../../types/utils";
 import type { UpdaterProps } from "./types";
 import { arePackagesRelated, getCommands, getPackage } from "./utils";
 
