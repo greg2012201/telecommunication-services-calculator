@@ -2,7 +2,7 @@
   {
     "id": "6f7a6f63-fd4c-4aa7-8d9b-95c59a3aaec8",
     "name": "Internet",
-    "description": "Szybki internet",
+    "description": "Fast internet",
     "productKey": "internet",
     "kind": "ITEM",
     "price": {
@@ -13,8 +13,8 @@
   },
   {
     "id": "5b41fbf2-9894-48f4-8b52-cc1818c3fb67",
-    "name": "Telewizja",
-    "description": "Telewizja kablowa",
+    "name": "Television",
+    "description": "Cable television",
     "productKey": "tv",
     "kind": "ITEM",
     "price": {
@@ -25,8 +25,8 @@
   },
   {
     "id": "c2311c3e-0109-4743-b2ee-506166ce40f1",
-    "name": "Pakiet \"Internet + telewizja\"",
-    "description": "Internet + telewizja w jednym pakiecie",
+    "name": "Package \"Internet + Television\"",
+    "description": "Internet + television in one package",
     "productKey": "internet_tv_package",
     "kind": "PACKAGE",
     "price": {
@@ -38,8 +38,8 @@
   },
   {
     "id": "1b11b26b-41b7-4a85-986c-38f77fb5314e",
-    "name": "Pakiet \"Internet + Abonament telefoniczny\"",
-    "description": "Internet + abonament telefoniczny w jednym pakiecie",
+    "name": "Package \"Internet + Phone Subscription\"",
+    "description": "Internet + phone subscription in one package",
     "productKey": "internet_phone_package",
     "kind": "PACKAGE",
     "price": {
@@ -51,8 +51,8 @@
   },
   {
     "id": "b5f02d1c-507e-43a7-9df4-c2e77994372c",
-    "name": "Abonament telefoniczny",
-    "description": "Abonament telefoniczny",
+    "name": "Phone Subscription",
+    "description": "Phone subscription",
     "productKey": "phone",
     "kind": "ITEM",
     "price": {
@@ -63,8 +63,8 @@
   },
   {
     "id": "beed5626-23fa-4c04-9cc3-e327b1d8c162",
-    "name": "Dekoder 4K",
-    "description": "Dekoder z obsługą 4K",
+    "name": "4K Decoder",
+    "description": "Decoder with 4K support",
     "productKey": "decoder",
     "kind": "ITEM",
     "price": {
