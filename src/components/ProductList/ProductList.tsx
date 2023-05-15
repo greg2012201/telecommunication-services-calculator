@@ -71,7 +71,6 @@ function ListItem({
   const options = priceAdapter(price);
   const initialOption = options[0];
   const [selectedOption, setSelectedOption] = useState(initialOption);
-  console.log(isDisabled);
   return (
     <li className={styles.list_item}>
       <div className={styles.list_item_description_wrapper}>
