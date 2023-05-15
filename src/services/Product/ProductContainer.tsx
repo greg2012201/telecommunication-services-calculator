@@ -1,7 +1,7 @@
 import { fetchManager } from "../API";
 import useFetch from "../../hooks/useFetch";
 import { TProduct } from "../../types";
-import { useProduct } from ".";
+import { ProductProvider } from ".";
 import { ReactNode } from "react";
 
 interface Props {
@@ -9,19 +9,18 @@ interface Props {
 }
 
 function ProductContainer({ children }: Props) {
-  const { dispatch } = useProduct();
   const fetcher = fetchManager(import.meta.env.VITE_REACT_APP_FEATURE_FLAG);
-  const { isFetching } = useFetch<TProduct[]>({
+  const { isFetching, data, hasError } = useFetch<TProduct[]>({
     fetcher,
     fetchOnInitialRender: true,
-    onSuccess: (data) => {
-      dispatch({ type: "SET_PRODUCTS", payload: data });
-    },
   });
   if (isFetching) {
     return <p>Loading...</p>;
   }
-  return <>{children}</>;
+  if (hasError) {
+    return <p>Ooops! Something went wrong!</p>;
+  }
+  return <ProductProvider products={data}>{children}</ProductProvider>;
 }
 
 export default ProductContainer;

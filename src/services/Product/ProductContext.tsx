@@ -10,6 +10,7 @@ import summaryItemsUpdater from "./summaryItemsUpdater";
 
 interface Props {
   children: ReactNode;
+  products: TProduct[];
 }
 
 export interface State {
@@ -63,8 +64,8 @@ const ProductContext = createContext<ContextProps>({
   dispatch: () => null,
 });
 
-const ProductProvider: FC<Props> = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+const ProductProvider: FC<Props> = ({ children, products }) => {
+  const [state, dispatch] = useReducer(reducer, { ...initialState, products });
 
   return (
     <ProductContext.Provider value={{ state, dispatch }}>
