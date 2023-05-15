@@ -7,6 +7,12 @@ type UpdaterProps = {
   summaryItems: TSummaryItem[];
 };
 
+type Commands = {
+  addPackageFromRelatedItems: boolean;
+  addPackageItem: boolean;
+  addNonPackageItem: boolean;
+};
+
 function isArrayPartOfArray<T>(arr: T[], subArr: T[]): boolean {
   return subArr.every((val) => arr.includes(val));
 }
@@ -45,15 +51,6 @@ function getPackage({
   };
 }
 
-function isInSummaryItems({
-  itemToAdd,
-  summaryItems,
-}: Pick<UpdaterProps, "itemToAdd" | "summaryItems">): boolean {
-  return summaryItems.some((item) => {
-    return item.id === itemToAdd.id;
-  });
-}
-
 function isPackage(itemToAdd: TSummaryItem): boolean {
   return !!itemToAdd?.includedProducts?.length;
 }
@@ -74,26 +71,38 @@ function isPartOfThePackage({
     );
   });
 }
-type Validators = {
-  shouldSetPackageIfItemIsPartOfPackage: boolean;
-  shouldReplaceItemsInSummaryWithPackage: boolean;
-  shouldSetOnlyPackageIfItemIsPackage: boolean;
-};
-function validators({
+function getCommands({
   itemToAdd,
   products,
   summaryItems,
-}: UpdaterProps): Validators {
+}: UpdaterProps): Commands {
   return {
-    shouldSetPackageIfItemIsPartOfPackage:
+    addPackageFromRelatedItems:
       isPartOfThePackage({ itemToAdd, products, summaryItems }) &&
-      hasEqualYears({ itemToAdd, summaryItems }),
-    shouldReplaceItemsInSummaryWithPackage: isInSummaryItems({
-      itemToAdd,
-      summaryItems,
-    }),
-    shouldSetOnlyPackageIfItemIsPackage: isPackage(itemToAdd),
+      hasEqualYears({
+        itemToAdd,
+        summaryItems: summaryItems.filter((item) => !item?.includedProducts),
+      }),
+    addPackageItem: isPackage(itemToAdd),
+    addNonPackageItem: !isInSummaryItemPackage(itemToAdd, summaryItems),
   };
+}
+
+function isInSummaryItemPackage(
+  itemToAdd: TSummaryItem,
+  summaryItems: TSummaryItem[]
+) {
+  const packages = summaryItems.filter((item) => !!item?.includedProducts);
+  return (
+    !!packages?.length &&
+    packages
+      .filter((item) => item.selectedYear === itemToAdd.selectedYear)
+      .map((item) => item.includedProducts)
+      .some(
+        (includedProducts) =>
+          includedProducts && includedProducts.includes(itemToAdd.productKey)
+      )
+  );
 }
 
 function summaryItemsUpdater({
@@ -101,29 +110,47 @@ function summaryItemsUpdater({
   products,
   summaryItems,
 }: UpdaterProps): TSummaryItem[] {
-  const {
-    shouldSetPackageIfItemIsPartOfPackage,
-    shouldReplaceItemsInSummaryWithPackage,
-    shouldSetOnlyPackageIfItemIsPackage,
-  } = validators({ itemToAdd, products, summaryItems });
+  const { addPackageFromRelatedItems, addPackageItem, addNonPackageItem } =
+    getCommands({ itemToAdd, products, summaryItems });
 
-  if (shouldSetPackageIfItemIsPartOfPackage) {
+  if (addPackageFromRelatedItems) {
     const gotPackage = getPackage({ itemToAdd, products, summaryItems });
     if (!isSummaryItem(gotPackage)) {
       return [];
     }
-    return [gotPackage];
+    return [
+      ...summaryItems.filter(
+        (item) =>
+          gotPackage.id !== item.id &&
+          gotPackage.selectedYear !== item.selectedYear &&
+          gotPackage?.includedProducts &&
+          !gotPackage?.includedProducts.includes(item.productKey)
+      ),
+      gotPackage,
+    ];
   }
-  if (shouldReplaceItemsInSummaryWithPackage) {
-    const gotPackage = getPackage({ itemToAdd, products, summaryItems });
-    return gotPackage
-      ? [gotPackage]
-      : [...summaryItems.filter((item) => item.id !== itemToAdd.id), itemToAdd];
+  if (addPackageItem) {
+    return [
+      ...summaryItems.filter((item) => {
+        return (
+          itemToAdd.id !== item.id &&
+          itemToAdd?.includedProducts &&
+          !itemToAdd?.includedProducts.includes(item.productKey)
+        );
+      }),
+      itemToAdd,
+    ];
   }
-  if (shouldSetOnlyPackageIfItemIsPackage) {
-    return [itemToAdd];
+  if (addNonPackageItem) {
+    return [
+      ...summaryItems.filter(
+        (item) => itemToAdd.id !== item.id && itemToAdd.selectedYear
+      ),
+      itemToAdd,
+    ];
   }
-  return [...summaryItems.filter((item) => !item?.includedProducts), itemToAdd];
+  // default
+  return summaryItems;
 }
 
 export default summaryItemsUpdater;
