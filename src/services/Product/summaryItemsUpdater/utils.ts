@@ -85,12 +85,6 @@ export function getCommands({
   products,
   summaryItems,
 }: UpdaterProps): Commands {
-  console.log(
-    hasEqualYears({
-      itemToAdd,
-      summaryItems: summaryItems.filter((item) => !item?.includedProducts),
-    })
-  );
   return {
     addPackageFromRelatedItems:
       isPartOfThePackage({ itemToAdd, products, summaryItems }) &&
