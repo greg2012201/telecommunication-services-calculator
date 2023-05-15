@@ -22,6 +22,7 @@ function hasEqualYears({
   summaryItems,
 }: Pick<UpdaterProps, "itemToAdd" | "summaryItems">): boolean {
   return summaryItems
+    .filter((item) => item.id !== itemToAdd.id)
     .map((item) => item.selectedYear)
     .every((selectedYear) => selectedYear === itemToAdd.selectedYear);
 }
@@ -95,6 +96,12 @@ function getCommands({
   products,
   summaryItems,
 }: UpdaterProps): Commands {
+  console.log(
+    hasEqualYears({
+      itemToAdd,
+      summaryItems: summaryItems.filter((item) => !item?.includedProducts),
+    })
+  );
   return {
     addPackageFromRelatedItems:
       isPartOfThePackage({ itemToAdd, products, summaryItems }) &&
