@@ -35,19 +35,24 @@ function getPackage({
   const arr = summaryItems.map((item) => {
     return item.productKey;
   });
-  const foundPackageItem = packages.find((packageItem) => {
-    return isArrayPartOfArray<string>(
-      [...new Set([...arr, itemToAdd.productKey])],
-      packageItem.includedProducts
-    );
-  });
+  const foundPackageItem = packages
+    .filter((packageItem) => {
+      return isArrayPartOfArray<string>(
+        [...new Set([...arr, itemToAdd.productKey])],
+        packageItem.includedProducts
+      );
+    })
+    .map((item) => ({ ...item, price: item.price[itemToAdd.selectedYear] }))
+    .sort((a, b) => {
+      console.log({ a, b });
+      return a.price - b.price;
+    })[0];
   if (!foundPackageItem) {
     return null;
   }
   return {
     ...foundPackageItem,
     selectedYear: itemToAdd.selectedYear,
-    price: foundPackageItem.price[itemToAdd.selectedYear],
   };
 }
 
