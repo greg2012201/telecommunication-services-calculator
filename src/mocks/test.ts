@@ -74,3 +74,19 @@ export const products = [
     },
   },
 ];
+
+type SummaryItemGetterProps = {
+  id: string;
+  selectedYear: string;
+  price: number;
+};
+
+export function getSummaryItem({
+  id,
+  selectedYear,
+  price,
+}: SummaryItemGetterProps) {
+  const foundProduct = products.find((products) => products.id === id);
+
+  return { ...foundProduct, selectedYear, price };
+}
