@@ -19,7 +19,7 @@ type ItemToAddProps = {
 
 type ListItemProps = Pick<
   TProduct,
-  "id" | "name" | "price" | "description" | "currency" | "productKey"
+  "id" | "name" | "price" | "description" | "productKey"
 > & {
   handleAddItem({
     id,
@@ -61,7 +61,6 @@ function ListItem({
   name,
   price,
   description,
-  currency,
   handleAddItem,
   productKey,
   includedProducts,
@@ -81,7 +80,7 @@ function ListItem({
         <p className={styles.list_item_price_indicator}>
           <span>Price:</span>
           {selectedOption.value}
-          {currency}
+          PLN
         </p>
         <SelectField
           id={id}

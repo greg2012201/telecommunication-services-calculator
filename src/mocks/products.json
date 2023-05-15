@@ -9,8 +9,7 @@
       "2025": 59,
       "2024": 49,
       "2023": 39
-    },
-    "currency": "PLN"
+    }
   },
   {
     "id": "5b41fbf2-9894-48f4-8b52-cc1818c3fb67",
@@ -22,8 +21,7 @@
       "2025": 59,
       "2024": 49,
       "2023": 49
-    },
-    "currency": "PLN"
+    }
   },
   {
     "id": "c2311c3e-0109-4743-b2ee-506166ce40f1",
@@ -36,8 +34,7 @@
       "2024": 89,
       "2023": 79
     },
-    "includedProducts": ["internet", "tv", "decoder"],
-    "currency": "PLN"
+    "includedProducts": ["internet", "tv", "decoder"]
   },
   {
     "id": "1b11b26b-41b7-4a85-986c-38f77fb5314e",
@@ -50,8 +47,7 @@
       "2024": 64,
       "2023": 64
     },
-    "includedProducts": ["internet", "phone"],
-    "currency": "PLN"
+    "includedProducts": ["internet", "phone"]
   },
   {
     "id": "b5f02d1c-507e-43a7-9df4-c2e77994372c",
@@ -63,8 +59,7 @@
       "2025": 29,
       "2024": 29,
       "2023": 29
-    },
-    "currency": "PLN"
+    }
   },
   {
     "id": "beed5626-23fa-4c04-9cc3-e327b1d8c162",
@@ -76,7 +71,6 @@
       "2025": 29,
       "2024": 29,
       "2023": 29
-    },
-    "currency": "PLN"
+    }
   }
 ]
