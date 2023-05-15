@@ -19,6 +19,7 @@ export interface State {
 export type Action =
   | { type: "SET_PRODUCTS"; payload: TProduct[] }
   | { type: "UPDATE_SUMMARY"; payload: TSummaryItem }
+  | { type: "REMOVE_ITEM"; payload: TSummaryItem["id"] }
   | { type: "RESET_SUMMARY" };
 
 const initialState: State = {
@@ -38,6 +39,13 @@ function reducer(state: State, action: Action): State {
       });
       return { ...state, summaryItems: newSummaryItems };
     }
+    case "REMOVE_ITEM":
+      return {
+        ...state,
+        summaryItems: state.summaryItems.filter(
+          (item) => item.id !== action.payload
+        ),
+      };
     case "RESET_SUMMARY":
       return { ...state, summaryItems: [] };
     default:
