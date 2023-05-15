@@ -18,7 +18,6 @@ export interface State {
   summaryItems: TSummaryItem[];
 }
 export type Action =
-  | { type: "SET_PRODUCTS"; payload: TProduct[] }
   | { type: "UPDATE_SUMMARY"; payload: TSummaryItem }
   | { type: "REMOVE_ITEM"; payload: TSummaryItem["id"] }
   | { type: "RESET_SUMMARY" };
@@ -30,8 +29,6 @@ const initialState: State = {
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {
-    case "SET_PRODUCTS":
-      return { ...state, products: action.payload };
     case "UPDATE_SUMMARY": {
       const newSummaryItems = summaryItemsUpdater({
         itemToAdd: action.payload,
