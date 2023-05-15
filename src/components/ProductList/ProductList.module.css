@@ -1,5 +1,6 @@
 .wrapper {
   max-width: 1000px;
+  min-width: 400px;
   padding: 10px;
   border: 1px solid rgb(212 212 212);
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -59,6 +60,7 @@
   padding: 8px;
   border-radius: 4px;
   border: none;
+  min-width: 40px;
   box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
     rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
   background-color: rgb(226 232 240);

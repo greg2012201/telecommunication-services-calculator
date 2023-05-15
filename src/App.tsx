@@ -1,6 +1,7 @@
 import ProductList from "./components/ProductList";
 import { ProductContainer, ProductProvider } from "./services/Product";
 import styles from "./App.module.css";
+import SummaryList from "./components/SummaryList";
 
 function App() {
   return (
@@ -11,7 +12,10 @@ function App() {
           <p>Find your best offer</p>
         </div>
         <ProductContainer>
-          <ProductList />
+          <div className={styles.product_wrapper}>
+            <ProductList />
+            <SummaryList />
+          </div>
         </ProductContainer>
       </div>
     </ProductProvider>
