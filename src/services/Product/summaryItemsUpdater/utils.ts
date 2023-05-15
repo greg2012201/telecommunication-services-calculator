@@ -1,23 +1,12 @@
-import { TProduct, TSummaryItem, isSummaryItem } from "../../types";
-import productDataAdapter from "./productDataAdapter";
+import { productDataAdapter } from "..";
+import type { TSummaryItem } from "../../../types";
+import type { Commands, UpdaterProps } from "./types";
 
-type UpdaterProps = {
-  itemToAdd: TSummaryItem;
-  products: TProduct[];
-  summaryItems: TSummaryItem[];
-};
-
-type Commands = {
-  addPackageFromRelatedItems: boolean;
-  addPackageItem: boolean;
-  addNonPackageItem: boolean;
-};
-
-function isArrayPartOfArray<T>(arr: T[], subArr: T[]): boolean {
+export function isArrayPartOfArray<T>(arr: T[], subArr: T[]): boolean {
   return subArr.every((val) => arr.includes(val));
 }
 
-function hasEqualYears({
+export function hasEqualYears({
   itemToAdd,
   summaryItems,
 }: Pick<UpdaterProps, "itemToAdd" | "summaryItems">): boolean {
@@ -27,7 +16,7 @@ function hasEqualYears({
     .every((selectedYear) => selectedYear === itemToAdd.selectedYear);
 }
 
-function getPackage({
+export function getPackage({
   itemToAdd,
   products,
   summaryItems,
@@ -57,11 +46,11 @@ function getPackage({
   };
 }
 
-function isPackage(itemToAdd: TSummaryItem): boolean {
+export function isPackage(itemToAdd: TSummaryItem): boolean {
   return !!itemToAdd?.includedProducts?.length;
 }
 
-function arePackagesRelated(
+export function arePackagesRelated(
   itemToAdd: TSummaryItem,
   itemFromList: TSummaryItem
 ) {
@@ -75,7 +64,7 @@ function arePackagesRelated(
   );
 }
 
-function isPartOfThePackage({
+export function isPartOfThePackage({
   itemToAdd,
   products,
   summaryItems,
@@ -91,7 +80,7 @@ function isPartOfThePackage({
     );
   });
 }
-function getCommands({
+export function getCommands({
   itemToAdd,
   products,
   summaryItems,
@@ -114,7 +103,7 @@ function getCommands({
   };
 }
 
-function isInSummaryItemPackage(
+export function isInSummaryItemPackage(
   itemToAdd: TSummaryItem,
   summaryItems: TSummaryItem[]
 ) {
@@ -130,54 +119,3 @@ function isInSummaryItemPackage(
       )
   );
 }
-
-function summaryItemsUpdater({
-  itemToAdd,
-  products,
-  summaryItems,
-}: UpdaterProps): TSummaryItem[] {
-  const { addPackageFromRelatedItems, addPackageItem, addNonPackageItem } =
-    getCommands({ itemToAdd, products, summaryItems });
-
-  if (addPackageFromRelatedItems) {
-    const gotPackage = getPackage({ itemToAdd, products, summaryItems });
-    if (!isSummaryItem(gotPackage)) {
-      return [];
-    }
-    return [
-      ...summaryItems.filter(
-        (item) =>
-          gotPackage.id !== item.id &&
-          gotPackage.selectedYear !== item.selectedYear &&
-          gotPackage?.includedProducts &&
-          !gotPackage?.includedProducts.includes(item.productKey)
-      ),
-      gotPackage,
-    ];
-  }
-  if (addPackageItem) {
-    return [
-      ...summaryItems.filter((item) => {
-        return (
-          !arePackagesRelated(itemToAdd, item) &&
-          itemToAdd.id !== item.id &&
-          itemToAdd?.includedProducts &&
-          !itemToAdd?.includedProducts.includes(item.productKey)
-        );
-      }),
-      itemToAdd,
-    ];
-  }
-  if (addNonPackageItem) {
-    return [
-      ...summaryItems.filter(
-        (item) => itemToAdd.id !== item.id && itemToAdd.selectedYear
-      ),
-      itemToAdd,
-    ];
-  }
-  // default
-  return summaryItems;
-}
-
-export default summaryItemsUpdater;
