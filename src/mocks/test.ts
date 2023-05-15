@@ -83,7 +83,7 @@ type SummaryItemGetterProps = {
   price: number;
 };
 
-export function getSummaryItemMock({
+export function hydrateMockProps({
   id,
   selectedYear,
   price,
@@ -93,10 +93,10 @@ export function getSummaryItemMock({
   return { ...foundProduct, selectedYear, price } as TSummaryItem;
 }
 
-export function composeSummaryItemsMock(items: SummaryItemGetterProps[]) {
+export function hydrateManyMockProps(items: SummaryItemGetterProps[]) {
   const mocks: TSummaryItem[] = [];
   items.forEach((itemProps) => {
-    const foundItem = getSummaryItemMock(itemProps);
+    const foundItem = hydrateMockProps(itemProps);
     mocks.push(foundItem);
   });
   return mocks;
