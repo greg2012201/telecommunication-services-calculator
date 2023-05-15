@@ -29,13 +29,32 @@ type ListItemProps = Pick<
     includedProducts,
     name,
   }: ItemToAddProps): void;
-} & { includedProducts?: string[]; isActive: boolean };
+} & {
+  includedProducts?: string[];
+  isActive: boolean;
+  summaryItems?: TSummaryItem[];
+};
 
 function isActive(currId: TProduct["id"], summaryItems: TSummaryItem[]) {
   return summaryItems.some((item) => {
     return item.id === currId;
   });
 }
+
+const isDisabled = (
+  summaryItems: TSummaryItem[],
+  currItemProps: Pick<TSummaryItem, "productKey" | "selectedYear">
+) => {
+  return summaryItems.some((item) => {
+    if (!item?.includedProducts) {
+      return;
+    }
+    return (
+      item.includedProducts.includes(currItemProps.productKey) &&
+      item.selectedYear === currItemProps.selectedYear
+    );
+  });
+};
 
 function ListItem({
   id,
@@ -46,12 +65,13 @@ function ListItem({
   handleAddItem,
   productKey,
   includedProducts,
+  summaryItems,
   isActive,
 }: ListItemProps) {
   const options = priceAdapter(price);
   const initialOption = options[0];
   const [selectedOption, setSelectedOption] = useState(initialOption);
-
+  console.log(isDisabled);
   return (
     <li className={styles.list_item}>
       <div className={styles.list_item_description_wrapper}>
@@ -91,6 +111,13 @@ function ListItem({
           }}
           className={styles.list_item_button}
           type="button"
+          disabled={
+            !!summaryItems &&
+            isDisabled(summaryItems, {
+              selectedYear: selectedOption.label,
+              productKey,
+            })
+          }
         >
           {isActive ? "Edit" : "Add"}
         </button>
@@ -115,13 +142,15 @@ function ProductList() {
       <p className={styles.divider_description}>Items</p>
 
       <ul className={styles.list}>
-        {items.map(({ id, ...rest }) => {
+        {items.map((item) => {
+          const { id, ...rest } = item;
           return (
             <ListItem
               key={id}
               id={id}
               handleAddItem={handleAddItem}
               isActive={isActive(id, summaryItems)}
+              summaryItems={summaryItems}
               {...rest}
             />
           );
