@@ -1,4 +1,6 @@
-export const products = [
+import { TProduct, TSummaryItem } from "../types";
+
+export const products: TProduct[] = [
   {
     id: "6f7a6f63-fd4c-4aa7-8d9b-95c59a3aaec8",
     name: "Internet",
@@ -81,12 +83,12 @@ type SummaryItemGetterProps = {
   price: number;
 };
 
-export function getSummaryItem({
+export function getSummaryItemMock({
   id,
   selectedYear,
   price,
-}: SummaryItemGetterProps) {
+}: SummaryItemGetterProps): TSummaryItem {
   const foundProduct = products.find((products) => products.id === id);
 
-  return { ...foundProduct, selectedYear, price };
+  return { ...foundProduct, selectedYear, price } as TSummaryItem;
 }
