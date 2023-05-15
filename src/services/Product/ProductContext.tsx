@@ -13,7 +13,6 @@ interface Props {
 }
 
 export interface State {
-  totalPrice: number;
   products: TProduct[];
   summaryItems: TSummaryItem[];
 }
@@ -23,7 +22,6 @@ export type Action =
   | { type: "RESET_SUMMARY" };
 
 const initialState: State = {
-  totalPrice: 0,
   products: [],
   summaryItems: [],
 };
@@ -41,7 +39,7 @@ function reducer(state: State, action: Action): State {
       return { ...state, summaryItems: newSummaryItems };
     }
     case "RESET_SUMMARY":
-      return { ...state, totalPrice: 0, summaryItems: [] };
+      return { ...state, summaryItems: [] };
     default:
       throw new Error("Unexpected action");
   }
