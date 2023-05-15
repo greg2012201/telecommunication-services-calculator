@@ -4,7 +4,7 @@ import {
   productDataAdapter,
   priceAdapter,
 } from "../../services/Product";
-import { TProduct, isString } from "../../types";
+import { TProduct, TSummaryItem, isString } from "../../types";
 import SelectField from "../SelectField";
 import styles from "./ProductList.module.css";
 
@@ -29,7 +29,13 @@ type ListItemProps = Pick<
     includedProducts,
     name,
   }: ItemToAddProps): void;
-} & { includedProducts?: string[] };
+} & { includedProducts?: string[]; isActive: boolean };
+
+function isActive(currId: TProduct["id"], summaryItems: TSummaryItem[]) {
+  return summaryItems.some((item) => {
+    return item.id === currId;
+  });
+}
 
 function ListItem({
   id,
@@ -40,6 +46,7 @@ function ListItem({
   handleAddItem,
   productKey,
   includedProducts,
+  isActive,
 }: ListItemProps) {
   const options = priceAdapter(price);
   const initialOption = options[0];
@@ -85,7 +92,7 @@ function ListItem({
           className={styles.list_item_button}
           type="button"
         >
-          Add
+          {isActive ? "Edit" : "Add"}
         </button>
       </div>
     </li>
@@ -94,7 +101,7 @@ function ListItem({
 
 function ProductList() {
   const { state, dispatch } = useProduct();
-  const { products } = state;
+  const { products, summaryItems } = state;
   const { items, packages } = productDataAdapter(products);
   const handleAddItem = (itemProps: ItemToAddProps) => {
     dispatch({
@@ -114,6 +121,7 @@ function ProductList() {
               key={id}
               id={id}
               handleAddItem={handleAddItem}
+              isActive={isActive(id, summaryItems)}
               {...rest}
             />
           );
@@ -126,6 +134,7 @@ function ProductList() {
             <ListItem
               key={id}
               id={id}
+              isActive={isActive(id, summaryItems)}
               handleAddItem={handleAddItem}
               {...rest}
             />
