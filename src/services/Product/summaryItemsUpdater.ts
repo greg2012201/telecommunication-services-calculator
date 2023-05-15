@@ -144,7 +144,6 @@ function summaryItemsUpdater({
     ];
   }
   if (addPackageItem) {
-    console.log("add package");
     return [
       ...summaryItems.filter((item) => {
         return (
