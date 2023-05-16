@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, ReactNode, FC, useContext } from 'react';
+import React, { createContext, useReducer, ReactNode, useContext } from 'react';
 import type { TProduct, TSummaryItem } from '../../types';
 import summaryItemsUpdater from './summaryItemsUpdater';
 
