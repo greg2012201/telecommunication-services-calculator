@@ -21,9 +21,10 @@ const fetchers: Record<FeatureFlag, FetcherFn> = {
         headers: {
           "Content-Type": "application/json",
         },
-      });
+      }).then((res) => res.json());
     } catch (error) {
       console.error(error);
+      return error;
     }
   },
   STATIC_DATA_SOURCE: async () => {
