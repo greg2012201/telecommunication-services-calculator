@@ -21,3 +21,8 @@ Ract, TypeScript, Vite, Vitest, CSS, npm
 - `npm run dev` - Preview on http://localhost:3000/telecommunication-services-calculator
 - `npm test` - Run tests
 
+   ### Feature flags:
+   It is possible to mock data fetch. This option is set by default. 
+   To setup feature flag you need to set `VITE_REACT_APP_FEATURE_FLAG` in your `.env` file.
+- `mock fetch` - set flag to `VITE_REACT_APP_FEATURE_FLAG=STATIC_DATA_SOURCE`
+- `remote fetch(external API)` - set flag to `VITE_REACT_APP_FEATURE_FLAG=REMOTE_DATA_SOURCE` and `VITE_REACT_APP_FETCH_URL=<API_URL>`
