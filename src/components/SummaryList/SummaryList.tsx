@@ -1,6 +1,6 @@
 import { useProduct } from "../../services/Product";
 import { calculateTotalPrice } from "../../services/Product/calculatePrice";
-import Button from "../Button/Button";
+import Button from "../Button";
 import PropWrapper from "./PropWrapper";
 import styles from "./SummaryList.module.css";
 import { getPackages, handleCalculatePriceOfPackageItem } from "./utils";
