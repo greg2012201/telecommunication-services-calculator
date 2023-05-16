@@ -3,7 +3,7 @@ import styles from "./Button.module.css";
 
 type Props = {
   handleClick(): void;
-  disabled: boolean;
+  disabled?: boolean;
   children: ReactNode;
 };
 
