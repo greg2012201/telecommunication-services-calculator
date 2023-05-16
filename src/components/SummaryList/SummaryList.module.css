@@ -3,8 +3,14 @@
   flex-direction: column;
 }
 .price_summary_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   padding: 8px 10px;
   border-top: 1px solid gray;
+}
+.price_summary_wrapper--without-discount {
+  font-size: 14px;
 }
 .list_wrapper {
   padding-left: 4px;

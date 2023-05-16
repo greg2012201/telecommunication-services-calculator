@@ -35,7 +35,9 @@ function SummaryList() {
       </ul>
       <div className={styles.price_summary_wrapper}>
         {priceWithoutPackage ? (
-          <p>Without the package:{priceWithoutPackage}PLN </p>
+          <p className={styles["price_summary_wrapper--without-discount"]}>
+            Without the package:{priceWithoutPackage}PLN
+          </p>
         ) : null}
         <p>Total Price:{calculateTotalPrice(summaryItems)}PLN</p>
       </div>
