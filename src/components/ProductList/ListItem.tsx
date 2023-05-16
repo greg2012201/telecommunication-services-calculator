@@ -36,7 +36,7 @@ function ListItem({
   const initialOption = options[0];
   const [selectedOption, setSelectedOption] = useState(initialOption);
   return (
-    <li className={styles.list_item}>
+    <li className={styles.wrapper}>
       <div className={styles.description_wrapper}>
         <p>{name}</p>
         <p className={styles.description}>{description}</p>
