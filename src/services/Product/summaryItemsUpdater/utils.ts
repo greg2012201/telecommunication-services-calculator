@@ -16,36 +16,6 @@ export function hasEqualYears({
     .every((selectedYear) => selectedYear === itemToAdd.selectedYear);
 }
 
-export function getPackage({
-  itemToAdd,
-  products,
-  summaryItems,
-}: UpdaterProps): TSummaryItem | null {
-  const { packages } = productDataAdapter(products);
-  const arr = summaryItems.map((item) => {
-    return item.productKey;
-  });
-  const foundPackageItem = packages
-    .filter((packageItem) => {
-      return isArrayPartOfArray<string>(
-        [...new Set([...arr, itemToAdd.productKey])],
-        packageItem.includedProducts
-      );
-    })
-    .map((item) => ({ ...item, price: item.price[itemToAdd.selectedYear] }))
-    .sort((a, b) => {
-      console.log({ a, b });
-      return a.price - b.price;
-    })[0];
-  if (!foundPackageItem) {
-    return null;
-  }
-  return {
-    ...foundPackageItem,
-    selectedYear: itemToAdd.selectedYear,
-  };
-}
-
 export function isPackage(itemToAdd: TSummaryItem): boolean {
   return !!itemToAdd?.includedProducts?.length;
 }
@@ -112,4 +82,33 @@ export function isInSummaryItemPackage(
           includedProducts && includedProducts.includes(itemToAdd.productKey)
       )
   );
+}
+export function getPackage({
+  itemToAdd,
+  products,
+  summaryItems,
+}: UpdaterProps): TSummaryItem | null {
+  const { packages } = productDataAdapter(products);
+  const arr = summaryItems.map((item) => {
+    return item.productKey;
+  });
+  const foundPackageItem = packages
+    .filter((packageItem) => {
+      return isArrayPartOfArray<string>(
+        [...new Set([...arr, itemToAdd.productKey])],
+        packageItem.includedProducts
+      );
+    })
+    .map((item) => ({ ...item, price: item.price[itemToAdd.selectedYear] }))
+    .sort((a, b) => {
+      console.log({ a, b });
+      return a.price - b.price;
+    })[0];
+  if (!foundPackageItem) {
+    return null;
+  }
+  return {
+    ...foundPackageItem,
+    selectedYear: itemToAdd.selectedYear,
+  };
 }
