@@ -2,15 +2,15 @@ import React, { createContext, useReducer, ReactNode, useContext } from 'react';
 import type { TProduct, TSummaryItem } from '../../types';
 import summaryItemsUpdater from './summaryItemsUpdater';
 
-interface Props {
+type Props = {
   children: ReactNode;
   products: TProduct[];
-}
+};
 
-export interface State {
+export type State = {
   products: TProduct[];
   summaryItems: TSummaryItem[];
-}
+};
 export type Action =
   | { type: 'UPDATE_SUMMARY'; payload: TSummaryItem }
   | { type: 'REMOVE_ITEM'; payload: TSummaryItem['id'] }
