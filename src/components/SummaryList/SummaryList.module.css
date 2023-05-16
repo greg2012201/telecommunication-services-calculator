@@ -1,7 +1,6 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  min-width: 400px;
 }
 .price_summary_wrapper {
   padding: 8px 10px;
@@ -13,6 +12,7 @@
 .list_item_wrapper {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 6px;
   font-style: italic;
 }
@@ -33,4 +33,9 @@
 }
 .list_item_delete_button:hover {
   opacity: 0.7;
+}
+@media (min-width: 440px) {
+  .wrapper {
+    min-width: 400px;
+  }
 }
