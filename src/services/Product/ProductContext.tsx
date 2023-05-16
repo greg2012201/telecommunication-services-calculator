@@ -53,7 +53,7 @@ const ProductContext = createContext<ContextProps>({
   dispatch: () => null,
 });
 
-const ProductProvider: FC<Props> = ({ children, products }) => {
+function ProductProvider({ children, products }: Props) {
   const [state, dispatch] = useReducer(reducer, { ...initialState, products });
 
   return (
@@ -61,8 +61,10 @@ const ProductProvider: FC<Props> = ({ children, products }) => {
       {children}
     </ProductContext.Provider>
   );
-};
+}
 
-const useProduct = () => useContext(ProductContext);
+function useProduct() {
+  return useContext(ProductContext);
+}
 
 export { ProductProvider, useProduct };
