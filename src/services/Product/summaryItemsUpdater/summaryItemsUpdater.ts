@@ -1,18 +1,25 @@
-import type { TSummaryItem } from "../../../types";
-import { isSummaryItem } from "../../../types/utils";
-import type { UpdaterProps } from "./types";
-import { arePackagesRelated, getCommands, getPackage } from "./utils";
+import type { TSummaryItem } from '../../../types';
+import { isSummaryItem } from '../../../types/utils';
+import type { UpdaterProps } from './types';
+import { arePackagesRelated, getCommands, getPackage } from './utils';
 
 function summaryItemsUpdater({
   itemToAdd,
   products,
   summaryItems,
 }: UpdaterProps): TSummaryItem[] {
-  const { addPackageFromRelatedItems, addPackageItem, addNonPackageItem } =
-    getCommands({ itemToAdd, products, summaryItems });
+  const { addPackageFromRelatedItems, addPackageItem, addNonPackageItem } = getCommands({
+    itemToAdd,
+    products,
+    summaryItems,
+  });
 
   if (addPackageFromRelatedItems) {
-    const gotPackage = getPackage({ itemToAdd, products, summaryItems });
+    const gotPackage = getPackage({
+      itemToAdd,
+      products,
+      summaryItems,
+    });
     if (!isSummaryItem(gotPackage)) {
       return [];
     }
@@ -22,7 +29,7 @@ function summaryItemsUpdater({
           gotPackage.id !== item.id &&
           gotPackage.selectedYear !== item.selectedYear &&
           gotPackage?.includedProducts &&
-          !gotPackage?.includedProducts.includes(item.productKey)
+          !gotPackage?.includedProducts.includes(item.productKey),
       ),
       gotPackage,
     ];
@@ -43,7 +50,7 @@ function summaryItemsUpdater({
   if (addNonPackageItem) {
     return [
       ...summaryItems.filter(
-        (item) => itemToAdd.id !== item.id && itemToAdd.selectedYear
+        (item) => itemToAdd.id !== item.id && itemToAdd.selectedYear,
       ),
       itemToAdd,
     ];

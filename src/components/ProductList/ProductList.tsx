@@ -1,10 +1,10 @@
-import { useProduct, productDataAdapter } from "../../services/Product";
-import type { TProduct, TSummaryItem } from "../../types";
-import ListItem from "./ListItem";
-import styles from "./ProductList.module.css";
-import type { ItemToAddProps } from "./types";
+import { useProduct, productDataAdapter } from '../../services/Product';
+import type { TProduct, TSummaryItem } from '../../types';
+import ListItem from './ListItem';
+import styles from './ProductList.module.css';
+import type { ItemToAddProps } from './types';
 
-function isActive(currId: TProduct["id"], summaryItems: TSummaryItem[]) {
+function isActive(currId: TProduct['id'], summaryItems: TSummaryItem[]) {
   return summaryItems.some((item) => {
     return item.id === currId;
   });
@@ -16,7 +16,7 @@ function ProductList() {
   const { items, packages } = productDataAdapter(products);
   const handleAddItem = (itemProps: ItemToAddProps) => {
     dispatch({
-      type: "UPDATE_SUMMARY",
+      type: 'UPDATE_SUMMARY',
       payload: itemProps,
     });
   };

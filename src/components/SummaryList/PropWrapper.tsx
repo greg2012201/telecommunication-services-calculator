@@ -1,4 +1,4 @@
-import styles from "./PropWrapper.module.css";
+import styles from './PropWrapper.module.css';
 
 type PropWrapperProps = {
   label?: string;
@@ -8,7 +8,7 @@ type PropWrapperProps = {
 
 function PropWrapper({ label, value, hasTitle = false }: PropWrapperProps) {
   return (
-    <div className={hasTitle ? styles["wrapper--title"] : styles.wrapper}>
+    <div className={hasTitle ? styles['wrapper--title'] : styles.wrapper}>
       <p className={styles.label}>{label}</p>
       <p>{value}</p>
     </div>

@@ -1,8 +1,8 @@
-import { fetchManager } from "../API";
-import useFetch from "../../hooks/useFetch";
-import type { TProduct } from "../../types";
-import { ProductProvider } from ".";
-import { ReactNode } from "react";
+import { fetchManager } from '../API';
+import useFetch from '../../hooks/useFetch';
+import type { TProduct } from '../../types';
+import { ProductProvider } from '.';
+import { ReactNode } from 'react';
 
 interface Props {
   children: ReactNode;

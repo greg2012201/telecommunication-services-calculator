@@ -1,4 +1,4 @@
-import styles from "./SelectField.module.css";
+import styles from './SelectField.module.css';
 
 type Value = string | number;
 
@@ -12,7 +12,7 @@ type Props = {
   label: string;
   name: string;
   id?: string;
-  defaultOptionLabel?: Option["label"];
+  defaultOptionLabel?: Option['label'];
   handleChange(option: Option): void;
 };
 
@@ -34,7 +34,7 @@ function SelectField({
         name={name}
         onChange={(e) => {
           const targetValue = e.target.value;
-          const [value, label] = targetValue.split(",");
+          const [value, label] = targetValue.split(',');
           return handleChange({ value, label });
         }}
       >

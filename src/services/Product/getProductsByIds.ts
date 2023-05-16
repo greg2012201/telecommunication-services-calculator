@@ -1,10 +1,7 @@
-import { findProductById } from ".";
-import type { TProduct } from "../../types";
+import { findProductById } from '.';
+import type { TProduct } from '../../types';
 
-function getProductsByIds(
-  summedProductsIds: string[],
-  products: TProduct[]
-): TProduct[] {
+function getProductsByIds(summedProductsIds: string[], products: TProduct[]): TProduct[] {
   const transformedProducts: TProduct[] = [];
 
   summedProductsIds.forEach((productId) => {

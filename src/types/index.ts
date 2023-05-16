@@ -5,8 +5,8 @@ export interface IItem {
   name: string;
   description: string;
   productKey: TProductKey;
-  kind: "ITEM" | "PACKAGE";
-  price: Record<"2023" | "2024" | "2025", number>;
+  kind: 'ITEM' | 'PACKAGE';
+  price: Record<'2023' | '2024' | '2025', number>;
 }
 
 export interface IPackage extends IItem {
@@ -15,7 +15,7 @@ export interface IPackage extends IItem {
 
 export type TProduct = IItem | IPackage;
 
-export type TSummaryItem = Pick<IItem, "id" | "name" | "productKey"> & {
+export type TSummaryItem = Pick<IItem, 'id' | 'name' | 'productKey'> & {
   price: number;
   selectedYear: number | string;
   includedProducts?: TProductKey[];

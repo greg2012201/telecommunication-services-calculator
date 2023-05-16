@@ -1,4 +1,4 @@
-import type { TProduct, TSummaryItem } from "../../types";
+import type { TProduct, TSummaryItem } from '../../types';
 
 export type ItemToAddProps = {
   id: string;
@@ -11,7 +11,7 @@ export type ItemToAddProps = {
 
 export type ListItemProps = Pick<
   TProduct,
-  "id" | "name" | "price" | "description" | "productKey"
+  'id' | 'name' | 'price' | 'description' | 'productKey'
 > & {
   handleAddItem({
     id,

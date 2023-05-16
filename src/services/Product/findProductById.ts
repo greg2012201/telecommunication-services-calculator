@@ -1,9 +1,6 @@
-import type { TProduct } from "../../types";
+import type { TProduct } from '../../types';
 
-function findProductById(
-  id: TProduct["id"],
-  products: TProduct[]
-): TProduct | null {
+function findProductById(id: TProduct['id'], products: TProduct[]): TProduct | null {
   const foundProduct = products.find((product) => {
     return product.id === id;
   });

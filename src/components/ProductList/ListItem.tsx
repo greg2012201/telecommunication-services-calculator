@@ -1,15 +1,15 @@
-import { useState } from "react";
-import { priceAdapter } from "../../services/Product";
-import type { TSummaryItem } from "../../types";
-import styles from "./ListItem.module.css";
-import { isString } from "../../types/utils";
-import SelectField from "../SelectField";
-import type { ListItemProps } from "./types";
-import Button from "../Button/Button";
+import { useState } from 'react';
+import { priceAdapter } from '../../services/Product';
+import type { TSummaryItem } from '../../types';
+import styles from './ListItem.module.css';
+import { isString } from '../../types/utils';
+import SelectField from '../SelectField';
+import type { ListItemProps } from './types';
+import Button from '../Button/Button';
 
 const isDisabled = (
   summaryItems: TSummaryItem[],
-  currItemProps: Pick<TSummaryItem, "productKey" | "selectedYear">
+  currItemProps: Pick<TSummaryItem, 'productKey' | 'selectedYear'>,
 ) => {
   return summaryItems.some((item) => {
     if (!item?.includedProducts) {
@@ -51,7 +51,7 @@ function ListItem({
         <SelectField
           id={id}
           name={name}
-          label="Choose an option"
+          label='Choose an option'
           options={options}
           handleChange={(selectedOption) => {
             setSelectedOption(selectedOption);
@@ -81,7 +81,7 @@ function ListItem({
             })
           }
         >
-          {isActive ? "Edit" : "Add"}
+          {isActive ? 'Edit' : 'Add'}
         </Button>
       </div>
     </li>

@@ -1,6 +1,6 @@
-import { productDataAdapter } from "..";
-import type { TSummaryItem } from "../../../types";
-import type { Commands, UpdaterProps } from "./types";
+import { productDataAdapter } from '..';
+import type { TSummaryItem } from '../../../types';
+import type { Commands, UpdaterProps } from './types';
 
 export function isArrayPartOfArray<T>(arr: T[], subArr: T[]): boolean {
   return subArr.every((val) => arr.includes(val));
@@ -9,7 +9,7 @@ export function isArrayPartOfArray<T>(arr: T[], subArr: T[]): boolean {
 export function hasEqualYears({
   itemToAdd,
   summaryItems,
-}: Pick<UpdaterProps, "itemToAdd" | "summaryItems">): boolean {
+}: Pick<UpdaterProps, 'itemToAdd' | 'summaryItems'>): boolean {
   return summaryItems
     .filter((item) => item.id !== itemToAdd.id)
     .map((item) => item.selectedYear)
@@ -20,16 +20,12 @@ export function isPackage(itemToAdd: TSummaryItem): boolean {
   return !!itemToAdd?.includedProducts?.length;
 }
 
-export function arePackagesRelated(
-  itemToAdd: TSummaryItem,
-  itemFromList: TSummaryItem
-) {
+export function arePackagesRelated(itemToAdd: TSummaryItem, itemFromList: TSummaryItem) {
   return (
     itemFromList.includedProducts &&
     itemFromList.includedProducts.some(
       (productKey) =>
-        itemToAdd.includedProducts &&
-        itemToAdd.includedProducts.includes(productKey)
+        itemToAdd.includedProducts && itemToAdd.includedProducts.includes(productKey),
     )
   );
 }
@@ -46,7 +42,7 @@ export function isPartOfThePackage({
   return packages.some((packageItem) => {
     return isArrayPartOfArray<string>(
       [...new Set([...arr, itemToAdd.productKey])],
-      packageItem.includedProducts
+      packageItem.includedProducts,
     );
   });
 }
@@ -69,7 +65,7 @@ export function getCommands({
 
 export function isInSummaryItemPackage(
   itemToAdd: TSummaryItem,
-  summaryItems: TSummaryItem[]
+  summaryItems: TSummaryItem[],
 ) {
   const packages = summaryItems.filter((item) => !!item?.includedProducts);
   return (
@@ -79,7 +75,7 @@ export function isInSummaryItemPackage(
       .map((item) => item.includedProducts)
       .some(
         (includedProducts) =>
-          includedProducts && includedProducts.includes(itemToAdd.productKey)
+          includedProducts && includedProducts.includes(itemToAdd.productKey),
       )
   );
 }
@@ -96,7 +92,7 @@ export function getPackage({
     .filter((packageItem) => {
       return isArrayPartOfArray<string>(
         [...new Set([...arr, itemToAdd.productKey])],
-        packageItem.includedProducts
+        packageItem.includedProducts,
       );
     })
     .map((item) => ({ ...item, price: item.price[itemToAdd.selectedYear] }))

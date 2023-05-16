@@ -1,3 +1,3 @@
-import summaryItemsUpdater from "./summaryItemsUpdater";
+import summaryItemsUpdater from './summaryItemsUpdater';
 
 export default summaryItemsUpdater;

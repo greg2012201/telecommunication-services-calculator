@@ -1,9 +1,9 @@
-import type { TProduct, TSummaryItem } from "../../types";
+import type { TProduct, TSummaryItem } from '../../types';
 
 export function sumPricesOfPackageItems(
   includedProducts: string[],
   selectedYear: string,
-  products: TProduct[]
+  products: TProduct[],
 ): number {
   return products
     .filter((product) => {

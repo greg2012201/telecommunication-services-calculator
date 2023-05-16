@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import styles from "./Button.module.css";
+import { ReactNode } from 'react';
+import styles from './Button.module.css';
 
 type Props = {
   handleClick(): void;
@@ -12,7 +12,7 @@ function Button({ handleClick, disabled = false, children }: Props) {
     <button
       onClick={handleClick}
       className={styles.button}
-      type="button"
+      type='button'
       disabled={disabled}
     >
       {children}

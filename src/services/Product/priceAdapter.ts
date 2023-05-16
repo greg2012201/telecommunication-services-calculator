@@ -1,5 +1,5 @@
-import type { Option } from "../../components/SelectField/SelectField";
-import { TProduct } from "../../types";
+import type { Option } from '../../components/SelectField/SelectField';
+import { TProduct } from '../../types';
 
 type item = [string, number];
 
@@ -10,7 +10,7 @@ function mapToOption([key, value]: [string, number]): Option {
   return { label: key, value };
 }
 
-function priceAdapter(price: TProduct["price"]): Option[] {
+function priceAdapter(price: TProduct['price']): Option[] {
   return Object.entries(price).sort(descSort).map(mapToOption);
 }
 

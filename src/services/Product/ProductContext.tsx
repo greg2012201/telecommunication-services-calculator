@@ -1,12 +1,6 @@
-import React, {
-  createContext,
-  useReducer,
-  ReactNode,
-  FC,
-  useContext,
-} from "react";
-import type { TProduct, TSummaryItem } from "../../types";
-import summaryItemsUpdater from "./summaryItemsUpdater";
+import React, { createContext, useReducer, ReactNode, FC, useContext } from 'react';
+import type { TProduct, TSummaryItem } from '../../types';
+import summaryItemsUpdater from './summaryItemsUpdater';
 
 interface Props {
   children: ReactNode;
@@ -18,9 +12,9 @@ export interface State {
   summaryItems: TSummaryItem[];
 }
 export type Action =
-  | { type: "UPDATE_SUMMARY"; payload: TSummaryItem }
-  | { type: "REMOVE_ITEM"; payload: TSummaryItem["id"] }
-  | { type: "RESET_SUMMARY" };
+  | { type: 'UPDATE_SUMMARY'; payload: TSummaryItem }
+  | { type: 'REMOVE_ITEM'; payload: TSummaryItem['id'] }
+  | { type: 'RESET_SUMMARY' };
 
 const initialState: State = {
   products: [],
@@ -29,7 +23,7 @@ const initialState: State = {
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {
-    case "UPDATE_SUMMARY": {
+    case 'UPDATE_SUMMARY': {
       const newSummaryItems = summaryItemsUpdater({
         itemToAdd: action.payload,
         products: state.products,
@@ -37,17 +31,15 @@ function reducer(state: State, action: Action): State {
       });
       return { ...state, summaryItems: newSummaryItems };
     }
-    case "REMOVE_ITEM":
+    case 'REMOVE_ITEM':
       return {
         ...state,
-        summaryItems: state.summaryItems.filter(
-          (item) => item.id !== action.payload
-        ),
+        summaryItems: state.summaryItems.filter((item) => item.id !== action.payload),
       };
-    case "RESET_SUMMARY":
+    case 'RESET_SUMMARY':
       return { ...state, summaryItems: [] };
     default:
-      throw new Error("Unexpected action");
+      throw new Error('Unexpected action');
   }
 }
 

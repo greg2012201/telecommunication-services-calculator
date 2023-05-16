@@ -1,4 +1,4 @@
-import type { TProduct, TSummaryItem } from "../../../types";
+import type { TProduct, TSummaryItem } from '../../../types';
 
 export type UpdaterProps = {
   itemToAdd: TSummaryItem;

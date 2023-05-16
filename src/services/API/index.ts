@@ -1,3 +1,3 @@
-import fetchManager from "./fetchManager";
+import fetchManager from './fetchManager';
 
 export { fetchManager };

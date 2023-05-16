@@ -1,16 +1,16 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState } from 'react';
 
 export const actions = {
-  initialize: "INITIALIZE",
-  success: "FETCH_DATA_SUCCESS",
-  error: "FETCH_DATA_ERROR",
+  initialize: 'INITIALIZE',
+  success: 'FETCH_DATA_SUCCESS',
+  error: 'FETCH_DATA_ERROR',
 };
 
 export const states = {
-  idle: "idle",
-  isLoading: "loading",
-  hasLoaded: "loaded",
-  hasError: "error",
+  idle: 'idle',
+  isLoading: 'loading',
+  hasLoaded: 'loaded',
+  hasError: 'error',
 };
 
 const transitions = {
@@ -39,10 +39,8 @@ function useStateMachine() {
 
   const updateState = useCallback(
     (action: string) =>
-      setCurrentState((currentState: string) =>
-        transition(currentState, action)
-      ),
-    []
+      setCurrentState((currentState: string) => transition(currentState, action)),
+    [],
   );
   const compareState = (state: string) => currentState === state;
   return { updateState, compareState, states };

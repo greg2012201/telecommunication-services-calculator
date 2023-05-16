@@ -1,14 +1,10 @@
-import type { IPackage, TProduct } from "../../types";
-import { isPackage } from "../../types/utils";
+import type { IPackage, TProduct } from '../../types';
+import { isPackage } from '../../types/utils';
 
-function findPackageByItemKey(
-  products: TProduct[],
-  productKey: string
-): IPackage | null {
+function findPackageByItemKey(products: TProduct[], productKey: string): IPackage | null {
   const foundPackage = products.find((product) => {
     return (
-      isPackage(product) &&
-      product.includedProducts.some((key) => productKey === key)
+      isPackage(product) && product.includedProducts.some((key) => productKey === key)
     );
   });
   if (!foundPackage) {
