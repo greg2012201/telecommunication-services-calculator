@@ -5,6 +5,7 @@ import styles from "./ListItem.module.css";
 import { isString } from "../../types/utils";
 import SelectField from "../SelectField";
 import type { ListItemProps } from "./types";
+import Button from "../Button/Button";
 
 const isDisabled = (
   summaryItems: TSummaryItem[],
@@ -57,8 +58,8 @@ function ListItem({
           }}
           defaultOptionLabel={initialOption.label}
         />
-        <button
-          onClick={() => {
+        <Button
+          handleClick={() => {
             const selectedPriceAsNumber = isString(selectedOption.value)
               ? parseInt(selectedOption.value, 10)
               : selectedOption.value;
@@ -72,8 +73,6 @@ function ListItem({
               name,
             });
           }}
-          className={styles.button}
-          type="button"
           disabled={
             !!summaryItems &&
             isDisabled(summaryItems, {
@@ -83,7 +82,7 @@ function ListItem({
           }
         >
           {isActive ? "Edit" : "Add"}
-        </button>
+        </Button>
       </div>
     </li>
   );
