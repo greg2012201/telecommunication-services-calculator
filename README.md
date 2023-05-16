@@ -12,7 +12,7 @@ Ract, TypeScript, Vite, Vitest, CSS, npm
 
 ## Development
    
-   ### Instalation:
+   ### Installation:
   - `git clone https://github.com/greg2012201/telecommunication-services-calculator.git`
   - `cd telecomunication-services-calculator`
   - `npm install`
