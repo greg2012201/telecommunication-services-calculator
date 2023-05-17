@@ -4,6 +4,8 @@ import Button from '../Button';
 import PropWrapper from './PropWrapper';
 import styles from './SummaryList.module.css';
 import { getPackages, handleCalculatePriceOfPackageItem } from './utils';
+import { RiDeleteBin2Line } from 'react-icons/ri';
+import { GrPowerReset } from 'react-icons/gr';
 
 function SummaryList() {
   const { state, dispatch } = useProduct();
@@ -24,13 +26,9 @@ function SummaryList() {
               <PropWrapper value={name} hasTitle />
               <PropWrapper value={`${price}PLN`} label='Price:' />
               <PropWrapper value={selectedYear.toString()} label='Year:' />
-              <button
-                onClick={() => dispatch({ type: 'REMOVE_ITEM', payload: id })}
-                className={styles.list_item_delete_button}
-                type='button'
-              >
-                ✖
-              </button>
+              <Button handleClick={() => dispatch({ type: 'REMOVE_ITEM', payload: id })}>
+                <RiDeleteBin2Line size={20} />
+              </Button>
             </li>
           );
         })}
@@ -48,7 +46,7 @@ function SummaryList() {
           handleClick={() => dispatch({ type: 'RESET_SUMMARY' })}
           disabled={summaryIsEmpty}
         >
-          Reset
+          <GrPowerReset size={18} />
         </Button>
       </div>
     </div>

@@ -21,26 +21,9 @@
   gap: 6px;
   font-style: italic;
 }
-.list_item_delete_button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4px;
-  border-radius: 100%;
-  width: 20px;
-  height: 20px;
-  border: none;
-  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
-    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
-  background-color: rgb(226 232 240);
-  color: rgb(15 23 42);
-  cursor: pointer;
-}
-.list_item_delete_button:hover {
-  opacity: 0.7;
-}
 .list_footer {
   display: flex;
+  align-items: center;
   padding: 8px 10px;
   border-top: 1px solid gray;
 }

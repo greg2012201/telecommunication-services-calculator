@@ -6,6 +6,8 @@ import { isString } from '../../types/utils';
 import SelectField from '../SelectField';
 import type { ListItemProps } from './types';
 import Button from '../Button/Button';
+import { AiOutlineFileAdd } from 'react-icons/ai';
+import { FiEdit } from 'react-icons/fi';
 
 const isDisabled = (
   summaryItems: TSummaryItem[],
@@ -81,11 +83,10 @@ function ListItem({
             })
           }
         >
-          {isActive ? 'Edit' : 'Add'}
+          {isActive ? <FiEdit size={18} /> : <AiOutlineFileAdd size={20} />}
         </Button>
       </div>
     </li>
   );
 }
-
 export default ListItem;

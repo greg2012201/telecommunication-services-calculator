@@ -1,18 +1,19 @@
 .button {
-  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
   border-radius: 4px;
   border: none;
   min-width: 40px;
-  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
-    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
-  background-color: rgb(226 232 240);
-  color: rgb(15 23 42);
+  background-color: transparent;
+  color: none;
   cursor: pointer;
+  box-shadow: unset;
+  min-height: 40px;
 }
 .button:hover {
-  box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
-    rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
-  opacity: 0.8;
+  opacity: 0.7;
 }
 .button:disabled {
   opacity: 0.6;
