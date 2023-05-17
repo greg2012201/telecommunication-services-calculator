@@ -97,7 +97,6 @@ export function getPackage({
     })
     .map((item) => ({ ...item, price: item.price[itemToAdd.selectedYear] }))
     .sort((a, b) => {
-      console.log({ a, b });
       return a.price - b.price;
     })[0];
   if (!foundPackageItem) {
