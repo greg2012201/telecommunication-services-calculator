@@ -26,6 +26,7 @@ function summaryItemsUpdater({
     return [
       ...summaryItems.filter(
         (item) =>
+          !arePackagesRelated(gotPackage, item) &&
           gotPackage.id !== item.id &&
           gotPackage.selectedYear !== item.selectedYear &&
           gotPackage?.includedProducts &&
