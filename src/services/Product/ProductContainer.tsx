@@ -10,7 +10,7 @@ interface Props {
 
 function ProductContainer({ children }: Props) {
   const fetcher = fetchManager(
-    import.meta.env.VITE_REACT_APP_FEATURE_FLAG || 'STATIC_DATA_SOURCE',
+    import.meta.env.VITE_REACT_APP_FEATURE_FLAG ?? 'STATIC_DATA_SOURCE',
   );
   const { isFetching, data, hasError } = useFetch<TProduct[]>({
     fetcher,
